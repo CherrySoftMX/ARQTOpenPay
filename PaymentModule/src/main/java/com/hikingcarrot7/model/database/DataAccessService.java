@@ -42,6 +42,11 @@ public abstract class DataAccessService<T extends Entity> {
         return removed;
     }
 
+    public boolean existEntity(String id) {
+        List<T> entities = getAllEntities();
+        return entities.stream().anyMatch(entity -> entity.getId().equals(id));
+    }
+
     public Optional<T> selectEntityById(String id) {
         List<T> entities = getAllEntities();
         return entities.stream()

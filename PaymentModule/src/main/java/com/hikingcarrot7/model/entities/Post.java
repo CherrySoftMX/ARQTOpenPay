@@ -1,5 +1,7 @@
 package com.hikingcarrot7.model.entities;
 
+import java.util.UUID;
+
 /**
  *
  * @author HikingCarrot7
@@ -19,7 +21,8 @@ public class Post extends Entity {
     public Post(String id, String sellerId, String concepto, String tipoBien, String idEvento,
             String fechaAdjudicacion, String horaAdjudicacion, String husoHorario, double importe, boolean paidOut) {
 
-        this(id, sellerId);
+        super(id);
+        this.sellerId = sellerId;
         this.concepto = concepto;
         this.tipoBien = tipoBien;
         this.idEvento = idEvento;
@@ -30,8 +33,8 @@ public class Post extends Entity {
         this.paidOut = paidOut;
     }
 
-    public Post(String id, String sellerId) {
-        super(id);
+    public Post(String sellerId) {
+        super(UUID.randomUUID().toString());
         this.sellerId = sellerId;
         this.paidOut = false;
     }

@@ -1,7 +1,10 @@
 package com.hikingcarrot7.main;
 
+import com.hikingcarrot7.model.entities.Post;
 import com.hikingcarrot7.model.entities.Seller;
+import com.hikingcarrot7.model.services.PostService;
 import com.hikingcarrot7.model.services.SellerService;
+import com.hikingcarrot7.model.services.exceptions.ServiceException;
 
 /**
  *
@@ -9,11 +12,24 @@ import com.hikingcarrot7.model.services.SellerService;
  */
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ServiceException {
         Seller seller1 = new Seller("15001169", "Nicolás", "Canul Ibarra", "ricardo@gmail.com", "9992343446");
         Seller seller2 = new Seller("15001170", "Emmanuel", "Chablé Collí", "emma@gmail.com", "9992344323");
         SellerService sellerService = SellerService.getInstance();
-        sellerService.insertSeller(seller2);
+        PostService postService = PostService.getInstance();
+
+        sellerService.insertSeller(seller1);
+
+        Post post = new Post(seller1.getId())
+                .setConcepto("EVENTO SUBASTA")
+                .setTipoBien("correo")
+                .setIdEvento("lkasdf23434sdf")
+                .setImporte(15)
+                .setFechaAdjudicacion("2020-08-12")
+                .setHoraAdjudicacion("12:00AM")
+                .setHusoHorario("Africa/Abidjan");
+
+        postService.insertPost(post);
     }
 
     /**

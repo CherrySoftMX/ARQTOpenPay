@@ -22,13 +22,17 @@ public class PostService {
     }
 
     private final DataAccessService<Post> dao;
+    private final SellerService sellerService;
 
     private PostService() {
         this.dao = new PostDataAccessService();
+        this.sellerService = SellerService.getInstance();
     }
 
     public void insertPost(Post post) {
-        dao.insertEntity(post);
+        String sellerId = post.getSellerId();
+        if (sellerService.existSeller(sellerId))
+            dao.insertEntity(post);
     }
 
     public boolean removePost(Post post) {
@@ -36,7 +40,7 @@ public class PostService {
     }
 
     public Post getPostById(String id) {
-        return (Post) dao.selectEntityById(id).orElse(null);
+        return dao.selectEntityById(id).orElse(null);
     }
 
     public boolean updatePost(String id, Post post) {

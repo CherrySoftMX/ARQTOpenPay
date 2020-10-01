@@ -1,12 +1,14 @@
 package com.hikingcarrot7.model.entities;
 
+import java.util.Objects;
+
 /**
  *
  * @author HikingCarrot7
  */
 public abstract class Entity {
 
-    private final String id;
+    private String id;
 
     public Entity(String id) {
         this.id = id;
@@ -14,6 +16,27 @@ public abstract class Entity {
 
     public String getId() {
         return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    @Override public int hashCode() {
+        int hash = 3;
+        hash = 59 * hash + Objects.hashCode(this.id);
+        return hash;
+    }
+
+    @Override public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        final Entity other = (Entity) obj;
+        return Objects.equals(this.id, other.id);
     }
 
 }

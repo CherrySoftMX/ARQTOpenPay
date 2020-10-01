@@ -2,6 +2,7 @@ package com.hikingcarrot7.controllers;
 
 import com.hikingcarrot7.model.entities.Seller;
 import com.hikingcarrot7.model.services.SellerService;
+import com.hikingcarrot7.model.services.exceptions.ServiceException;
 
 /**
  *
@@ -15,11 +16,11 @@ public class SellerController {
         this.sellerService = SellerService.getInstance();
     }
 
-    public void insertSeller(Seller seller) {
+    public void insertSeller(Seller seller) throws ServiceException {
         sellerService.insertSeller(seller);
     }
 
-    public void removeSeller(Seller seller) {
+    public void removeSeller(Seller seller) throws ServiceException {
         sellerService.removeSeller(seller);
     }
 

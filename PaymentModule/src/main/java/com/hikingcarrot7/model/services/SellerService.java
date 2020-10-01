@@ -3,6 +3,9 @@ package com.hikingcarrot7.model.services;
 import com.hikingcarrot7.model.database.DataAccessService;
 import com.hikingcarrot7.model.database.SellerDataAccessService;
 import com.hikingcarrot7.model.entities.Seller;
+import com.hikingcarrot7.model.services.exceptions.ServiceException;
+import com.hikingcarrot7.model.services.openpay.APIService;
+import com.hikingcarrot7.model.services.openpay.OpenpayAPIService;
 import java.util.List;
 
 /**
@@ -21,17 +24,29 @@ public class SellerService {
     }
 
     private final DataAccessService<Seller> dao;
+    private final APIService apiService;
 
     private SellerService() {
-        this.dao = new SellerDataAccessService();
+        dao = new SellerDataAccessService();
+        apiService = OpenpayAPIService.getOpenpayAPI();
     }
 
-    public void insertSeller(Seller seller) {
-        dao.insertEntity(seller);
+    public void insertSeller(Seller seller) throws ServiceException {
+        if (!existSeller(seller.getId())) {
+            seller = (Seller) apiService.registerUser(seller);
+            dao.insertEntity(seller);
+        }
     }
 
-    public void removeSeller(Seller seller) {
-        dao.removeEntity(seller);
+    public void removeSeller(Seller seller) throws ServiceException {
+        if (existSeller(seller.getId())) {
+            apiService.deleteUser(seller);
+            dao.removeEntity(seller);
+        }
+    }
+
+    public boolean existSeller(String id) {
+        return dao.existEntity(id);
     }
 
     public Seller getSellerById(String id) {

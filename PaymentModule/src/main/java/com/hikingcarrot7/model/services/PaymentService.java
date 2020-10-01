@@ -1,15 +1,15 @@
 package com.hikingcarrot7.model.services;
 
+import com.hikingcarrot7.model.entities.Buyer;
 import com.hikingcarrot7.model.entities.Post;
+import com.hikingcarrot7.model.entities.Seller;
+import com.hikingcarrot7.model.services.exceptions.ServiceException;
+import com.hikingcarrot7.model.services.openpay.APIService;
+import com.hikingcarrot7.model.services.openpay.OpenpayAPIService;
 import com.hikingcarrot7.model.services.transactions.CreditCardTransaction;
-import com.hikingcarrot7.model.services.transactions.OpenpayAPIConnection;
 import com.hikingcarrot7.model.services.transactions.StoreTransaction;
 import com.hikingcarrot7.model.services.transactions.TransactionService;
-import java.io.IOException;
 import mx.openpay.client.Card;
-import mx.openpay.client.core.OpenpayAPI;
-import mx.openpay.client.exceptions.OpenpayServiceException;
-import mx.openpay.client.exceptions.ServiceUnavailableException;
 
 /**
  *
@@ -19,21 +19,44 @@ public class PaymentService {
 
     public static final String COST_PER_POST = "20.00";
 
-    public void registerPostWithCreditCard(Post post, Card card)
-            throws IOException, OpenpayServiceException, ServiceUnavailableException {
+    private static PaymentService instance;
 
-        card = registerCard(OpenpayAPIConnection.getOpenpayAPI(), card);
-        TransactionService transactionService = new CreditCardTransaction(null, card, COST_PER_POST);
+    public synchronized static PaymentService getInstance() {
+        if (instance == null)
+            instance = new PaymentService();
+
+        return instance;
+    }
+
+    private final APIService apiService;
+    private final SellerService sellerService;
+
+    private PaymentService() {
+        apiService = OpenpayAPIService.getOpenpayAPI();
+        sellerService = SellerService.getInstance();
+    }
+
+    public void publishPostWithCreditCard(Post post, Card card) throws ServiceException {
+        card = apiService.registerCreditCard(card);
+        Seller seller = getSellerFromPost(post);
+        TransactionService transactionService = new CreditCardTransaction(seller, card, COST_PER_POST);
         transactionService.processPayment();
         updatePostStatus(PostService.getInstance(), post);
     }
 
-    public void registerPostWithStoreDeposit(Post post)
-            throws IOException, OpenpayServiceException, ServiceUnavailableException {
-
-        TransactionService transactionService = new StoreTransaction(null, COST_PER_POST);
+    public void publishPostWithStoreDeposit(Post post) throws ServiceException {
+        Seller seller = getSellerFromPost(post);
+        TransactionService transactionService = new StoreTransaction(seller, COST_PER_POST);
         transactionService.processPayment();
         updatePostStatus(PostService.getInstance(), post);
+    }
+
+    public void payPostWithCreditCard(Post post, Buyer buyer, Card card) throws ServiceException {
+
+    }
+
+    public void payPostWithStoreDeposit(Post post, Buyer buyer) throws ServiceException {
+
     }
 
     private void updatePostStatus(PostService postService, Post post) {
@@ -41,17 +64,11 @@ public class PaymentService {
         postService.updatePost(post.getId(), post);
     }
 
-    public Card registerCard(OpenpayAPI openpayAPI, Card card)
-            throws OpenpayServiceException, ServiceUnavailableException {
+    private Seller getSellerFromPost(Post post) throws ServiceException {
+        if (sellerService.existSeller(post.getId()))
+            return sellerService.getSellerById(post.getId());
 
-        if (!isCardRegistered(card))
-            return openpayAPI.cards().create(card);
-
-        return card;
-    }
-
-    public boolean isCardRegistered(Card card) {
-        return card.getId() != null;
+        throw new ServiceException("Seller does not exist");
     }
 
 }

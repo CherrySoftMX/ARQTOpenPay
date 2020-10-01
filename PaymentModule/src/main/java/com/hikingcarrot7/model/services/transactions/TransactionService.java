@@ -1,9 +1,9 @@
 package com.hikingcarrot7.model.services.transactions;
 
-import java.io.IOException;
-import mx.openpay.client.core.OpenpayAPI;
-import mx.openpay.client.exceptions.OpenpayServiceException;
-import mx.openpay.client.exceptions.ServiceUnavailableException;
+import com.hikingcarrot7.model.services.exceptions.ServiceException;
+import com.hikingcarrot7.model.services.openpay.APIService;
+import com.hikingcarrot7.model.services.openpay.OpenpayAPIService;
+import mx.openpay.client.Charge;
 
 /**
  *
@@ -11,11 +11,11 @@ import mx.openpay.client.exceptions.ServiceUnavailableException;
  */
 public abstract class TransactionService {
 
-    protected final OpenpayAPI openpayAPI;
+    protected final APIService apiService;
 
-    public TransactionService() throws IOException {
-        openpayAPI = OpenpayAPIConnection.getOpenpayAPI();
+    public TransactionService() {
+        apiService = OpenpayAPIService.getOpenpayAPI();
     }
 
-    public abstract void processPayment() throws OpenpayServiceException, ServiceUnavailableException;
+    public abstract Charge processPayment() throws ServiceException;
 }

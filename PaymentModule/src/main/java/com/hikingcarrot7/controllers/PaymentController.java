@@ -1,11 +1,10 @@
 package com.hikingcarrot7.controllers;
 
+import com.hikingcarrot7.model.entities.Buyer;
 import com.hikingcarrot7.model.entities.Post;
 import com.hikingcarrot7.model.services.PaymentService;
-import java.io.IOException;
+import com.hikingcarrot7.model.services.exceptions.ServiceException;
 import mx.openpay.client.Card;
-import mx.openpay.client.exceptions.OpenpayServiceException;
-import mx.openpay.client.exceptions.ServiceUnavailableException;
 
 /**
  *
@@ -16,19 +15,23 @@ public class PaymentController {
     private final PaymentService paymentService;
 
     public PaymentController() {
-        this.paymentService = new PaymentService();
+        this.paymentService = PaymentService.getInstance();
     }
 
-    public void registerPostWithCreditCard(Post post, Card card)
-            throws IOException, OpenpayServiceException, ServiceUnavailableException {
-
-        paymentService.registerPostWithCreditCard(post, card);
+    public void publishPostWithCreditCard(Post post, Card card) throws ServiceException {
+        paymentService.publishPostWithCreditCard(post, card);
     }
 
-    public void registerPostWithStoreDeposit(Post post)
-            throws IOException, OpenpayServiceException, ServiceUnavailableException {
+    public void publishPostWithStoreDeposit(Post post) throws ServiceException {
+        paymentService.publishPostWithStoreDeposit(post);
+    }
 
-        paymentService.registerPostWithStoreDeposit(post);
+    public void payPostWithCreditCard(Post post, Buyer buyer, Card card) throws ServiceException {
+        paymentService.payPostWithCreditCard(post, buyer, card);
+    }
+
+    public void payPostWithStoreDeposit(Post post, Buyer buyer) throws ServiceException {
+        paymentService.payPostWithStoreDeposit(post, buyer);
     }
 
 }
