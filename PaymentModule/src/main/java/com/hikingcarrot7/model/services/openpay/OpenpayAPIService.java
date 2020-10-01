@@ -89,7 +89,7 @@ public class OpenpayAPIService extends OpenpayAPI implements APIService {
         }
     }
 
-    @Override public Charge createChargeWithStore(User user, Date dueDate, String amount) throws ServiceException {
+    @Override public Charge createChargeWithStoreDeposit(User user, Date dueDate, String amount) throws ServiceException {
         try {
             Customer customer = createCustomer(user);
             CreateStoreChargeParams request = new CreateStoreChargeParams();

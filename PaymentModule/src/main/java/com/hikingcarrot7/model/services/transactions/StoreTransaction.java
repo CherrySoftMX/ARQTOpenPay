@@ -22,7 +22,7 @@ public class StoreTransaction extends TransactionService {
     @Override public Charge processPayment() throws ServiceException {
         Calendar dueDate = Calendar.getInstance();
         dueDate.add(Calendar.DATE, 2);
-        return apiService.createChargeWithStore(seller, dueDate.getTime(), amount);
+        return apiService.createChargeWithStoreDeposit(seller, dueDate.getTime(), amount);
     }
 
     public Seller getSeller() {

@@ -59,7 +59,7 @@ public abstract class DataAccessService<T extends Entity> {
         return selectEntityById(id).map(e -> {
             int indexOfEntityToRemove = entities.indexOf(e);
             if (indexOfEntityToRemove >= 0) {
-                entities.set(indexOfEntityToRemove, e);
+                entities.set(indexOfEntityToRemove, entity);
                 saveEntities(entities);
                 return true;
             }

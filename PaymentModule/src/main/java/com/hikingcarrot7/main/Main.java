@@ -1,11 +1,14 @@
 package com.hikingcarrot7.main;
 
 import com.hikingcarrot7.model.entities.Buyer;
+import com.hikingcarrot7.model.entities.Post;
 import com.hikingcarrot7.model.entities.Seller;
 import com.hikingcarrot7.model.services.BuyerService;
+import com.hikingcarrot7.model.services.PaymentService;
 import com.hikingcarrot7.model.services.PostService;
 import com.hikingcarrot7.model.services.SellerService;
 import com.hikingcarrot7.model.services.exceptions.ServiceException;
+import mx.openpay.client.Card;
 
 /**
  *
@@ -20,6 +23,17 @@ public class Main {
         SellerService sellerService = SellerService.getInstance();
         PostService postService = PostService.getInstance();
         BuyerService buyerService = BuyerService.getInstance();
+        PaymentService paymentService = PaymentService.getInstance();
+
+        Card card = new Card()
+                .holderName(seller1.getFirstName() + " " + seller1.getLastName())
+                .cardNumber("4111111111111111")
+                .cvv2("110")
+                .expirationMonth(12)
+                .expirationYear(21);
+
+        Post post = postService.getPostById("9702ef29-bb53-4e2a-9a60-fbc21552c7ff");
+        // paymentService.publishPostWithCreditCard(post, card);
     }
 
     /**

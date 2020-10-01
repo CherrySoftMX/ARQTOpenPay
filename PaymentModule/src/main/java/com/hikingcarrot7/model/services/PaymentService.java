@@ -29,23 +29,21 @@ public class PaymentService {
     }
 
     private final APIService apiService;
-    private final SellerService sellerService;
 
     private PaymentService() {
         apiService = OpenpayAPIService.getOpenpayAPI();
-        sellerService = SellerService.getInstance();
     }
 
     public void publishPostWithCreditCard(Post post, Card card) throws ServiceException {
         card = apiService.registerCreditCard(card);
-        Seller seller = getSellerFromPost(post);
+        Seller seller = getPostAuthor(SellerService.getInstance(), post);
         TransactionService transactionService = new CreditCardTransaction(seller, card, COST_PER_POST);
         transactionService.processPayment();
         updatePostStatus(PostService.getInstance(), post);
     }
 
     public void publishPostWithStoreDeposit(Post post) throws ServiceException {
-        Seller seller = getSellerFromPost(post);
+        Seller seller = getPostAuthor(SellerService.getInstance(), post);
         TransactionService transactionService = new StoreTransaction(seller, COST_PER_POST);
         transactionService.processPayment();
         updatePostStatus(PostService.getInstance(), post);
@@ -64,9 +62,9 @@ public class PaymentService {
         postService.updatePost(post.getId(), post);
     }
 
-    private Seller getSellerFromPost(Post post) throws ServiceException {
-        if (sellerService.existSeller(post.getId()))
-            return sellerService.getSellerById(post.getId());
+    private Seller getPostAuthor(SellerService sellerService, Post post) throws ServiceException {
+        if (sellerService.existSeller(post.getSellerId()))
+            return sellerService.getSellerById(post.getSellerId());
 
         throw new ServiceException("Seller does not exist");
     }

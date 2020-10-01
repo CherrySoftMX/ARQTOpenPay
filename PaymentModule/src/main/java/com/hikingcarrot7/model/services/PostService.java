@@ -47,12 +47,28 @@ public class PostService {
         return dao.updateEntityById(id, post);
     }
 
+    public List<Post> getAllPostsFromSeller(String sellerId) {
+        List<Post> allPosts = getAllPosts();
+        return allPosts.stream()
+                .filter(post -> post.getSellerId().equals(sellerId))
+                .collect(Collectors.toList());
+    }
+
+    public boolean isPostPaid(String postId) {
+        return dao.selectEntityById(postId)
+                .map(Post::isPaidOut)
+                .orElse(false);
+    }
+
     public List<Post> getAllPaidPost() {
         return dao.getAllEntities()
                 .stream()
-                .map(entity -> (Post) entity)
                 .filter(Post::isPaidOut)
                 .collect(Collectors.toList());
+    }
+
+    public List<Post> getAllPosts() {
+        return dao.getAllEntities();
     }
 
 }

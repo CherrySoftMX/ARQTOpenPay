@@ -18,7 +18,7 @@ public interface APIService {
 
     public Charge createChargeWithCreditCard(User user, Card card, String amount) throws ServiceException;
 
-    public Charge createChargeWithStore(User user, Date dueDate, String amount) throws ServiceException;
+    public Charge createChargeWithStoreDeposit(User user, Date dueDate, String amount) throws ServiceException;
 
     public Card registerCreditCard(Card card) throws ServiceException;
 
