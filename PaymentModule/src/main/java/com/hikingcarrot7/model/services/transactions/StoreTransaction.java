@@ -24,7 +24,8 @@ public class StoreTransaction extends TransactionService {
         this.amount = amount;
     }
 
-    @Override public void processPayment() throws OpenpayServiceException, ServiceUnavailableException {
+    @Override
+    public void processPayment() throws OpenpayServiceException, ServiceUnavailableException {
         Customer customer = new Customer()
                 .name(seller.getFirstName())
                 .lastName(seller.getLastName())
@@ -32,7 +33,7 @@ public class StoreTransaction extends TransactionService {
                 .phoneNumber(seller.getPhoneNumber());
 
         Calendar dueDate = Calendar.getInstance();
-        dueDate.set(2021, 9, 01, 13, 45, 0);
+        dueDate.add(Calendar.DATE, 2);
 
         CreateStoreChargeParams request = new CreateStoreChargeParams();
         request.amount(new BigDecimal(amount));
