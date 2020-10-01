@@ -3,6 +3,10 @@ package com.hikingcarrot7.model.services;
 import com.hikingcarrot7.model.database.BuyerDataAccessService;
 import com.hikingcarrot7.model.database.DataAccessService;
 import com.hikingcarrot7.model.entities.Buyer;
+import com.hikingcarrot7.model.services.exceptions.ServiceException;
+import com.hikingcarrot7.model.services.openpay.APIService;
+import com.hikingcarrot7.model.services.openpay.OpenpayAPIService;
+import java.util.List;
 
 /**
  *
@@ -19,18 +23,30 @@ public class BuyerService {
         return instance;
     }
 
-    private BuyerService() {
-        this.dao = new BuyerDataAccessService();
-    }
-
+    private final APIService apiService;
     private final DataAccessService dao;
 
-    public void insertBuyer(Buyer buyer) {
-        dao.insertEntity(buyer);
+    private BuyerService() {
+        dao = new BuyerDataAccessService();
+        apiService = OpenpayAPIService.getOpenpayAPI();
     }
 
-    public boolean removeBuyer(Buyer buyer) {
-        return dao.removeEntity(buyer);
+    public void insertBuyer(Buyer buyer) throws ServiceException {
+        if (!existBuyer(buyer.getId())) {
+            buyer = (Buyer) apiService.registerUser(buyer);
+            dao.insertEntity(buyer);
+        }
+    }
+
+    public void removeBuyer(Buyer buyer) throws ServiceException {
+        if (existBuyer(buyer.getId())) {
+            apiService.deleteUser(buyer);
+            dao.removeEntity(buyer);
+        }
+    }
+
+    public boolean existBuyer(String id) {
+        return dao.existEntity(id);
     }
 
     public Buyer getBuyerById(String id) {
@@ -39,6 +55,10 @@ public class BuyerService {
 
     public boolean updateBuyer(String id, Buyer buyer) {
         return dao.updateEntityById(id, buyer);
+    }
+
+    public List<Buyer> getAllBuyers() {
+        return dao.getAllEntities();
     }
 
 }

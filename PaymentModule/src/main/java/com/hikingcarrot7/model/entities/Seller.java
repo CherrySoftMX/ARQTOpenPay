@@ -10,4 +10,8 @@ public class Seller extends User {
         super(id, firstName, lastName, email, phoneNumber);
     }
 
+    public Seller(String firstName, String lastName, String email, String phoneNumber) {
+        super(firstName, lastName, email, phoneNumber);
+    }
+
 }

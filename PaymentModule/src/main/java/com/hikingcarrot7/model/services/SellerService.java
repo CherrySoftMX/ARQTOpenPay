@@ -53,6 +53,10 @@ public class SellerService {
         return dao.selectEntityById(id).orElse(null);
     }
 
+    public boolean updateSellerById(String id, Seller seller) {
+        return dao.updateEntityById(id, seller);
+    }
+
     public List<Seller> getAllSellers() {
         return dao.getAllEntities();
     }

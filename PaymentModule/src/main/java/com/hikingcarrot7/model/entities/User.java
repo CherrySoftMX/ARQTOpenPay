@@ -1,5 +1,7 @@
 package com.hikingcarrot7.model.entities;
 
+import java.util.UUID;
+
 /**
  *
  * @author HikingCarrot7
@@ -17,6 +19,10 @@ public abstract class User extends Entity {
         this.lastName = lastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
+    }
+
+    public User(String firstName, String lastName, String email, String phoneNumber) {
+        this(UUID.randomUUID().toString(), firstName, lastName, email, phoneNumber);
     }
 
     public Entity setFirstName(String firstName) {

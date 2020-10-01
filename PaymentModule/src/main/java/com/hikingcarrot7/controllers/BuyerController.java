@@ -2,6 +2,7 @@ package com.hikingcarrot7.controllers;
 
 import com.hikingcarrot7.model.entities.Buyer;
 import com.hikingcarrot7.model.services.BuyerService;
+import com.hikingcarrot7.model.services.exceptions.ServiceException;
 
 /**
  *
@@ -15,11 +16,11 @@ public class BuyerController {
         this.buyerService = BuyerService.getInstance();
     }
 
-    public void insertBuyer(Buyer buyer) {
+    public void insertBuyer(Buyer buyer) throws ServiceException {
         buyerService.insertBuyer(buyer);
     }
 
-    public void removeBuyer(Buyer buyer) {
+    public void removeBuyer(Buyer buyer) throws ServiceException {
         buyerService.removeBuyer(buyer);
     }
 
