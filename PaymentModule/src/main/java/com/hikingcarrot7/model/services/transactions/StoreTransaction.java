@@ -21,7 +21,7 @@ public class StoreTransaction extends TransactionService {
 
     @Override public Charge processPayment() throws ServiceException {
         Calendar dueDate = Calendar.getInstance();
-        dueDate.set(2021, 9, 01, 13, 45, 0);
+        dueDate.add(Calendar.DATE, 2);
         return apiService.createChargeWithStore(seller, dueDate.getTime(), amount);
     }
 
