@@ -1,14 +1,7 @@
 package com.hikingcarrot7.main;
 
-import java.math.BigDecimal;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import mx.openpay.client.BankAccount;
-import mx.openpay.client.Payout;
-import mx.openpay.client.core.OpenpayAPI;
-import mx.openpay.client.core.requests.transactions.CreateBankPayoutParams;
-import mx.openpay.client.exceptions.OpenpayServiceException;
-import mx.openpay.client.exceptions.ServiceUnavailableException;
+import com.hikingcarrot7.model.entities.Seller;
+import com.hikingcarrot7.model.services.SellerService;
 
 /**
  *
@@ -17,8 +10,17 @@ import mx.openpay.client.exceptions.ServiceUnavailableException;
 public class Main {
 
     public static void main(String[] args) {
-        try {
-            /*BuyerController buyerController = new BuyerController();
+        Seller seller1 = new Seller("15001169", "Nicolás", "Canul Ibarra", "ricardo@gmail.com", "9992343446");
+        Seller seller2 = new Seller("15001170", "Emmanuel", "Chablé Collí", "emma@gmail.com", "9992344323");
+        SellerService sellerService = SellerService.getInstance();
+        sellerService.insertSeller(seller2);
+    }
+
+    /**
+     * Esto será eliminado en un futuro no tan lejano...
+     */
+    public static void setup() {
+        /*BuyerController buyerController = new BuyerController();
             PaymentController paymentController = new PaymentController();
             PostController postController = new PostController();
             SellerController sellerController = new SellerController();
@@ -31,7 +33,7 @@ public class Main {
 
             Post post = new Post("post1", seller1)
             .setConcepto("EVENTO SUBASTA")
-            .setTipoBien("correo") 
+            .setTipoBien("correo")
             .setIdEvento("lkasdf23434sdf")
             .setImporte(15)
             .setFechaAdjudicacion("2020-08-12")
@@ -59,34 +61,5 @@ public class Main {
             } catch (IOException | OpenpayServiceException | ServiceUnavailableException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
             }*/
-            OpenpayAPI api = new OpenpayAPI("https://sandbox-api.openpay.mx", "sk_b226df654f7147a685a61d91910a4c0f", "mdhyajxaybgiosonjgqt");
-            /*CreateTransferParams request = new CreateTransferParams();
-            request.toCustomerId("abnuwbdhkhnz9ojfepvy");
-            request.amount(new BigDecimal("10.00"));
-            request.description("Transferencia de Emmanuel a Ajax");
-            request.orderId("idOrdExt-0101");*/
-
- /*BankAccount request = new BankAccount();
-            request.holderName("Emmanuel Chablé Collí");
-            request.alias("Cuenta principal");
-            request.clabe("000000000000000000");
-
-            request = api.bankAccounts().create("az2asuczhjduxxu3dc2k", request);*/
-            // request = api.cards().create("az2asuczhjduxxu3dc2k", request);
-            // Transfer transfer = api.transfers().create("az2asuczhjduxxu3dc2k", request);
-            BankAccount bankAccount = api.bankAccounts().get("az2asuczhjduxxu3dc2k", "bjjedksmqnptc944cffn");
-
-            CreateBankPayoutParams request = new CreateBankPayoutParams();
-            request.bankAccountId(bankAccount.getId()); // = destination_id
-            request.amount(new BigDecimal("10.50"));
-            request.description("Retiro de saldo semanal");
-            request.orderId("oid-00021");
-
-            Payout payout = api.payouts().create("az2asuczhjduxxu3dc2k", request);
-
-        } catch (OpenpayServiceException | ServiceUnavailableException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
-
 }

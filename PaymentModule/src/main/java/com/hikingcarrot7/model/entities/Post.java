@@ -6,7 +6,7 @@ package com.hikingcarrot7.model.entities;
  */
 public class Post extends Entity {
 
-    private final Seller seller;
+    private final String sellerId;
     private String concepto;
     private String tipoBien;
     private String idEvento;
@@ -16,9 +16,23 @@ public class Post extends Entity {
     private double importe;
     private boolean paidOut;
 
-    public Post(String id, Seller seller) {
+    public Post(String id, String sellerId, String concepto, String tipoBien, String idEvento,
+            String fechaAdjudicacion, String horaAdjudicacion, String husoHorario, double importe, boolean paidOut) {
+
+        this(id, sellerId);
+        this.concepto = concepto;
+        this.tipoBien = tipoBien;
+        this.idEvento = idEvento;
+        this.fechaAdjudicacion = fechaAdjudicacion;
+        this.horaAdjudicacion = horaAdjudicacion;
+        this.husoHorario = husoHorario;
+        this.importe = importe;
+        this.paidOut = paidOut;
+    }
+
+    public Post(String id, String sellerId) {
         super(id);
-        this.seller = seller;
+        this.sellerId = sellerId;
         this.paidOut = false;
     }
 
@@ -57,8 +71,8 @@ public class Post extends Entity {
         return this;
     }
 
-    public Seller getSeller() {
-        return seller;
+    public String getSellerId() {
+        return sellerId;
     }
 
     public String getConcepto() {
@@ -98,7 +112,7 @@ public class Post extends Entity {
     }
 
     @Override public String toString() {
-        return "Post{" + "seller=" + seller + ", concepto=" + concepto
+        return "Post{" + "seller=" + sellerId + ", concepto=" + concepto
                 + ", tipoBien=" + tipoBien + ", idEvento=" + idEvento
                 + ", importe=" + importe + ", fechaAdjudicacion=" + fechaAdjudicacion
                 + ", horaAdjudicacion=" + horaAdjudicacion + ", husoHorario=" + husoHorario + '}';

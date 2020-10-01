@@ -1,7 +1,7 @@
 package com.hikingcarrot7.model.services;
 
-import com.hikingcarrot7.model.database.FakeDataAccessService;
-import com.hikingcarrot7.model.database.FakePostDataAccessService;
+import com.hikingcarrot7.model.database.DataAccessService;
+import com.hikingcarrot7.model.database.PostDataAccessService;
 import com.hikingcarrot7.model.entities.Post;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,11 +21,11 @@ public class PostService {
         return instance;
     }
 
-    private PostService() {
-        this.dao = new FakePostDataAccessService();
-    }
+    private final DataAccessService<Post> dao;
 
-    private final FakeDataAccessService dao;
+    private PostService() {
+        this.dao = new PostDataAccessService();
+    }
 
     public void insertPost(Post post) {
         dao.insertEntity(post);

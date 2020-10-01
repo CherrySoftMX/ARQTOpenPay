@@ -1,7 +1,7 @@
 package com.hikingcarrot7.model.services;
 
-import com.hikingcarrot7.model.database.FakeBuyerDataAccessService;
-import com.hikingcarrot7.model.database.FakeDataAccessService;
+import com.hikingcarrot7.model.database.BuyerDataAccessService;
+import com.hikingcarrot7.model.database.DataAccessService;
 import com.hikingcarrot7.model.entities.Buyer;
 
 /**
@@ -20,10 +20,10 @@ public class BuyerService {
     }
 
     private BuyerService() {
-        this.dao = new FakeBuyerDataAccessService();
+        this.dao = new BuyerDataAccessService();
     }
 
-    private final FakeDataAccessService dao;
+    private final DataAccessService dao;
 
     public void insertBuyer(Buyer buyer) {
         dao.insertEntity(buyer);

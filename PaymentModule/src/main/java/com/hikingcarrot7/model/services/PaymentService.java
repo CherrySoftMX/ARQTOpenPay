@@ -23,7 +23,7 @@ public class PaymentService {
             throws IOException, OpenpayServiceException, ServiceUnavailableException {
 
         card = registerCard(OpenpayAPIConnection.getOpenpayAPI(), card);
-        TransactionService transactionService = new CreditCardTransaction(post.getSeller(), card, COST_PER_POST);
+        TransactionService transactionService = new CreditCardTransaction(null, card, COST_PER_POST);
         transactionService.processPayment();
         updatePostStatus(PostService.getInstance(), post);
     }
@@ -31,7 +31,7 @@ public class PaymentService {
     public void registerPostWithStoreDeposit(Post post)
             throws IOException, OpenpayServiceException, ServiceUnavailableException {
 
-        TransactionService transactionService = new StoreTransaction(post.getSeller(), COST_PER_POST);
+        TransactionService transactionService = new StoreTransaction(null, COST_PER_POST);
         transactionService.processPayment();
         updatePostStatus(PostService.getInstance(), post);
     }

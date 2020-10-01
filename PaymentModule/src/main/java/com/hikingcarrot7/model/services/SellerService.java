@@ -1,8 +1,9 @@
 package com.hikingcarrot7.model.services;
 
-import com.hikingcarrot7.model.database.FakeDataAccessService;
-import com.hikingcarrot7.model.database.FakeSellerDataAccessService;
+import com.hikingcarrot7.model.database.DataAccessService;
+import com.hikingcarrot7.model.database.SellerDataAccessService;
 import com.hikingcarrot7.model.entities.Seller;
+import java.util.List;
 
 /**
  *
@@ -19,11 +20,11 @@ public class SellerService {
         return instance;
     }
 
-    private SellerService() {
-        this.dao = new FakeSellerDataAccessService();
-    }
+    private final DataAccessService<Seller> dao;
 
-    private final FakeDataAccessService dao;
+    private SellerService() {
+        this.dao = new SellerDataAccessService();
+    }
 
     public void insertSeller(Seller seller) {
         dao.insertEntity(seller);
@@ -34,7 +35,11 @@ public class SellerService {
     }
 
     public Seller getSellerById(String id) {
-        return (Seller) dao.selectEntityById(id).orElse(null);
+        return dao.selectEntityById(id).orElse(null);
+    }
+
+    public List<Seller> getAllSellers() {
+        return dao.getAllEntities();
     }
 
 }
