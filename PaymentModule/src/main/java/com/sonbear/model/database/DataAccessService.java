@@ -9,7 +9,7 @@ import java.util.Optional;
 
 /**
  *
- * @author HikingCarrot7
+ * @author Sonbear
  * @param <T>
  */
 public abstract class DataAccessService<T extends Entity> {

@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  *
- * @author HikingCarrot7
+ * @author Sonbear
  */
 public class PostController {
 

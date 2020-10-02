@@ -34,10 +34,10 @@ public class PaymentService {
         apiService = OpenpayAPIService.getOpenpayAPI();
     }
 
-    public void publishPostWithCreditCard(Post post, CreditCard card) throws ServiceException {
-        card = apiService.registerCreditCard(card);
+    public void publishPostWithCreditCard(Post post, CreditCard creditCard) throws ServiceException {
+        creditCard = apiService.registerCreditCard(creditCard);
         Seller seller = getPostAuthor(SellerService.getInstance(), post);
-        TransactionService transactionService = new CreditCardTransaction(seller, card, COST_PER_POST);
+        TransactionService transactionService = new CreditCardTransaction(seller, creditCard, COST_PER_POST);
         transactionService.processPayment();
         updatePostStatus(PostService.getInstance(), post);
     }
@@ -49,7 +49,7 @@ public class PaymentService {
         updatePostStatus(PostService.getInstance(), post);
     }
 
-    public void payPostWithCreditCard(Post post, User buyer, CreditCard card) throws ServiceException {
+    public void payPostWithCreditCard(Post post, User buyer, CreditCard creditCard) throws ServiceException {
 
     }
 

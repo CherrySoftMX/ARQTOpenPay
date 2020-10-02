@@ -2,7 +2,7 @@ package com.sonbear.model.services.exceptions;
 
 /**
  *
- * @author HikingCarrot7
+ * @author Sonbear
  */
 public class ServiceException extends Exception {
 

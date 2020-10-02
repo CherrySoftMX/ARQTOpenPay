@@ -26,8 +26,8 @@ public class PaymentController {
         paymentService.publishPostWithStoreDeposit(post);
     }
 
-    public void payPostWithCreditCard(Post post, User buyer, CreditCard card) throws ServiceException {
-        paymentService.payPostWithCreditCard(post, buyer, card);
+    public void payPostWithCreditCard(Post post, User buyer, CreditCard creditCard) throws ServiceException {
+        paymentService.payPostWithCreditCard(post, buyer, creditCard);
     }
 
     public void payPostWithStoreDeposit(Post post, User buyer) throws ServiceException {

@@ -18,7 +18,7 @@ import mx.openpay.client.exceptions.ServiceUnavailableException;
 
 /**
  *
- * @author HikingCarrot7
+ * @author Sonbear
  */
 public class OpenpayAPIService extends OpenpayAPI implements APIService {
 

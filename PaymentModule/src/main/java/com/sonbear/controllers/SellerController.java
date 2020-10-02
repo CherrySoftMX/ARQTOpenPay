@@ -6,7 +6,7 @@ import com.sonbear.model.services.exceptions.ServiceException;
 
 /**
  *
- * @author HikingCarrot7
+ * @author Sonbear
  */
 public class SellerController {
 

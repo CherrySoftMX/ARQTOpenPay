@@ -4,7 +4,7 @@ import java.util.UUID;
 
 /**
  *
- * @author HikingCarrot7
+ * @author Sonbear
  */
 public abstract class User extends Entity {
 

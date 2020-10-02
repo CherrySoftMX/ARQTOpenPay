@@ -6,7 +6,7 @@ import com.sonbear.model.services.openpay.OpenpayAPIService;
 
 /**
  *
- * @author HikingCarrot7
+ * @author Sonbear
  */
 public abstract class TransactionService {
 
@@ -16,5 +16,8 @@ public abstract class TransactionService {
         apiService = OpenpayAPIService.getOpenpayAPI();
     }
 
-    public abstract void processPayment() throws ServiceException;
+    /**
+     * @return El id de la transacción.
+     */
+    public abstract String processPayment() throws ServiceException;
 }

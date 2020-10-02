@@ -11,7 +11,7 @@ import com.sonbear.model.services.exceptions.ServiceException;
 
 /**
  *
- * @author HikingCarrot7
+ * @author Sonbear
  */
 public class Main {
 
@@ -31,6 +31,7 @@ public class Main {
                 .expirationYear(21);
 
         Post post = postService.getPostById("9702ef29-bb53-4e2a-9a60-fbc21552c7ff");
+        System.out.println(post);
         // paymentService.publishPostWithCreditCard(post, card);
     }
 

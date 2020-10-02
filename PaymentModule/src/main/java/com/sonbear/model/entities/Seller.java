@@ -2,7 +2,7 @@ package com.sonbear.model.entities;
 
 /**
  *
- * @author HikingCarrot7
+ * @author Sonbear
  */
 public class Seller extends User {
 

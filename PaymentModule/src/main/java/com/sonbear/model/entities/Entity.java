@@ -4,7 +4,7 @@ import java.util.Objects;
 
 /**
  *
- * @author HikingCarrot7
+ * @author Sonbear
  */
 public abstract class Entity {
 

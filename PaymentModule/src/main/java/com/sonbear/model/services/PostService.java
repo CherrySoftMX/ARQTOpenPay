@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 /**
  *
- * @author HikingCarrot7
+ * @author Sonbear
  */
 public class PostService {
 

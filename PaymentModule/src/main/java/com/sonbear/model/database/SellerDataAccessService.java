@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 
 /**
  *
- * @author HikingCarrot7
+ * @author Sonbear
  */
 public class SellerDataAccessService extends DataAccessService<Seller> {
 

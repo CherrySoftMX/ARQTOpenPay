@@ -18,10 +18,10 @@ public class StoreTransaction extends TransactionService {
         this.amount = amount;
     }
 
-    @Override public void processPayment() throws ServiceException {
+    @Override public String processPayment() throws ServiceException {
         Calendar dueDate = Calendar.getInstance();
         dueDate.add(Calendar.DATE, 2);
-        apiService.createChargeWithStoreDeposit(seller, dueDate.getTime(), amount);
+        return apiService.createChargeWithStoreDeposit(seller, dueDate.getTime(), amount);
     }
 
     public Seller getSeller() {

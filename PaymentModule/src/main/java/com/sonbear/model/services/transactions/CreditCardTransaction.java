@@ -6,7 +6,7 @@ import com.sonbear.model.services.exceptions.ServiceException;
 
 /**
  *
- * @author HikingCarrot7
+ * @author Sonbear
  */
 public class CreditCardTransaction extends TransactionService {
 
@@ -20,8 +20,8 @@ public class CreditCardTransaction extends TransactionService {
         this.amount = amount;
     }
 
-    @Override public void processPayment() throws ServiceException {
-        apiService.createChargeWithCreditCard(seller, card, amount);
+    @Override public String processPayment() throws ServiceException {
+        return apiService.createChargeWithCreditCard(seller, card, amount);
     }
 
     public CreditCard getCard() {

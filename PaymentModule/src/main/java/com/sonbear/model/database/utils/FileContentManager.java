@@ -13,7 +13,7 @@ import java.util.stream.Stream;
 
 /**
  *
- * @author HikingCarrot7
+ * @author Sonbear
  */
 public class FileContentManager {
 
