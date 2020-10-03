@@ -3,6 +3,7 @@ package com.sonbear.controllers;
 import com.sonbear.model.entities.Seller;
 import com.sonbear.model.services.SellerService;
 import com.sonbear.model.services.exceptions.ServiceException;
+import java.util.List;
 
 /**
  *
@@ -26,6 +27,10 @@ public class SellerController {
 
     public Seller getSellerById(String id) {
         return sellerService.getSellerById(id);
+    }
+
+    public List<Seller> getAllRegisteredSellers() {
+        return sellerService.getAllSellers();
     }
 
 }

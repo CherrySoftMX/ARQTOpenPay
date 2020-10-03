@@ -2,9 +2,10 @@ package com.sonbear.views;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Window;
 import javax.swing.Box;
 import javax.swing.GroupLayout;
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -16,9 +17,10 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Sonbear
  */
-public class BuyersView extends JFrame {
+public class BuyersView extends JDialog {
 
-    public BuyersView() {
+    public BuyersView(Window owner) {
+        super(owner);
         initComponents();
     }
 

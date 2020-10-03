@@ -1,11 +1,15 @@
 package com.sonbear.views;
 
+import static com.sonbear.views.UIConstants.DEFAULT_ROW_ICON;
+import com.sonbear.views.controllers.utils.ButtonCellEditor;
 import java.awt.BorderLayout;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Window;
 import javax.swing.Box;
 import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -17,10 +21,29 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Sonbear
  */
-public class SellersView extends JFrame {
+public class SellersView extends JDialog implements UIConstants {
 
-    public SellersView() {
+    public SellersView(Window owner) {
+        super(owner);
         initComponents();
+        initTables();
+    }
+
+    private void initTables() {
+        tableSellers.getColumnModel().getColumn(1).setCellRenderer((table, value, isSelected, hasFocus, row, column) -> {
+            JButton button = new JButton(DEFAULT_DELETE_ICON);
+            button.setToolTipText("Eliminar vendedor");
+            return button;
+        });
+
+        tableSellers.getColumnModel().getColumn(2).setCellRenderer((table, value, isSelected, hasFocus, row, column) -> {
+            JButton button = new JButton(DEFAULT_ROW_ICON);
+            button.setToolTipText("Iniciar sesión");
+            return button;
+        });
+
+        tableSellers.getColumnModel().getColumn(1).setCellEditor(new ButtonCellEditor(DEFAULT_DELETE_ICON));
+        tableSellers.getColumnModel().getColumn(2).setCellEditor(new ButtonCellEditor(DEFAULT_ROW_ICON));
     }
 
     @SuppressWarnings("unchecked")
@@ -37,7 +60,7 @@ public class SellersView extends JFrame {
         filler2 = new Box.Filler(new Dimension(5, 0), new Dimension(5, 0), new Dimension(5, 32767));
         filler3 = new Box.Filler(new Dimension(0, 5), new Dimension(0, 5), new Dimension(32767, 5));
 
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Vendedores registrados");
         setMaximumSize(new Dimension(425, 300));
         setMinimumSize(new Dimension(425, 300));
@@ -48,6 +71,7 @@ public class SellersView extends JFrame {
         jPanel1.setLayout(flowLayout1);
 
         btnAddSeller.setText("Agregar vendedor");
+        btnAddSeller.setCursor(new Cursor(Cursor.HAND_CURSOR));
         jPanel1.add(btnAddSeller);
 
         getContentPane().add(jPanel1, BorderLayout.PAGE_START);
@@ -59,14 +83,17 @@ public class SellersView extends JFrame {
 
             },
             new String [] {
-                "Nombre", "Iniciar sesión"
+                "Nombre", "Delete", "Iniciar sesión"
             }
         ));
         jScrollPane1.setViewportView(tableSellers);
         if (tableSellers.getColumnModel().getColumnCount() > 0) {
-            tableSellers.getColumnModel().getColumn(1).setMinWidth(85);
-            tableSellers.getColumnModel().getColumn(1).setPreferredWidth(85);
-            tableSellers.getColumnModel().getColumn(1).setMaxWidth(85);
+            tableSellers.getColumnModel().getColumn(1).setMinWidth(50);
+            tableSellers.getColumnModel().getColumn(1).setPreferredWidth(50);
+            tableSellers.getColumnModel().getColumn(1).setMaxWidth(50);
+            tableSellers.getColumnModel().getColumn(2).setMinWidth(50);
+            tableSellers.getColumnModel().getColumn(2).setPreferredWidth(50);
+            tableSellers.getColumnModel().getColumn(2).setMaxWidth(50);
         }
 
         jPanel2.add(jScrollPane1, BorderLayout.CENTER);
@@ -81,6 +108,14 @@ public class SellersView extends JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    public JButton getBtnAddSeller() {
+        return btnAddSeller;
+    }
+
+    public JTable getTableSellers() {
+        return tableSellers;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private JButton btnAddSeller;

@@ -1,4 +1,4 @@
-package com.sonbear.views.viewcontrollers.utils;
+package com.sonbear.views.controllers.utils;
 
 /**
  *

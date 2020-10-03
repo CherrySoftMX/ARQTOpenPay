@@ -4,9 +4,10 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.Window;
 import javax.swing.Box;
 import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -18,9 +19,10 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Sonbear
  */
-public class PostView extends JFrame {
+public class PostView extends JDialog {
 
-    public PostView() {
+    public PostView(Window owner) {
+        super(owner);
         initComponents();
     }
 

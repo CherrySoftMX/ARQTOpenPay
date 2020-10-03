@@ -14,4 +14,7 @@ public class Seller extends User {
         super(firstName, lastName, email, phoneNumber);
     }
 
+    public Seller() {
+    }
+
 }

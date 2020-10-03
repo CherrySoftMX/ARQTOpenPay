@@ -34,35 +34,41 @@ public class Login extends JFrame {
     private void initComponents() {
         GridBagConstraints gridBagConstraints;
 
-        jButton1 = new JButton();
-        jButton2 = new JButton();
+        btnSeller = new JButton();
+        btnBuyer = new JButton();
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("Iniciar sesión");
-        setMaximumSize(new Dimension(350, 100));
         setMinimumSize(new Dimension(350, 100));
-        setPreferredSize(new Dimension(350, 100));
         getContentPane().setLayout(new GridBagLayout());
 
-        jButton1.setText("Soy vendedor");
-        jButton1.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btnSeller.setText("Soy vendedor");
+        btnSeller.setCursor(new Cursor(Cursor.HAND_CURSOR));
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.fill = GridBagConstraints.BOTH;
         gridBagConstraints.insets = new Insets(5, 5, 5, 5);
-        getContentPane().add(jButton1, gridBagConstraints);
+        getContentPane().add(btnSeller, gridBagConstraints);
 
-        jButton2.setText("Soy comprador");
-        jButton2.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btnBuyer.setText("Soy comprador");
+        btnBuyer.setCursor(new Cursor(Cursor.HAND_CURSOR));
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.fill = GridBagConstraints.BOTH;
         gridBagConstraints.insets = new Insets(5, 5, 5, 5);
-        getContentPane().add(jButton2, gridBagConstraints);
+        getContentPane().add(btnBuyer, gridBagConstraints);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public JButton getBtnBuyer() {
+        return btnBuyer;
+    }
+
+    public JButton getBtnSeller() {
+        return btnSeller;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private JButton jButton1;
-    private JButton jButton2;
+    private JButton btnBuyer;
+    private JButton btnSeller;
     // End of variables declaration//GEN-END:variables
 }

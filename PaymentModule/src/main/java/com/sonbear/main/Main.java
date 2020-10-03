@@ -1,13 +1,9 @@
 package com.sonbear.main;
 
-import com.sonbear.model.entities.Buyer;
-import com.sonbear.model.entities.CreditCard;
-import com.sonbear.model.entities.Post;
-import com.sonbear.model.entities.Seller;
-import com.sonbear.model.services.PaymentService;
-import com.sonbear.model.services.PostService;
-import com.sonbear.model.services.SellerService;
 import com.sonbear.model.services.exceptions.ServiceException;
+import com.sonbear.views.Login;
+import com.sonbear.views.controllers.LoginViewController;
+import java.awt.EventQueue;
 
 /**
  *
@@ -16,7 +12,14 @@ import com.sonbear.model.services.exceptions.ServiceException;
 public class Main {
 
     public static void main(String[] args) throws ServiceException {
-        Seller seller1 = new Seller("Nicolás", "Canul Ibarra", "ricardo@gmail.com", "9992343446");
+        EventQueue.invokeLater(() -> {
+            Login login = new Login();
+            login.setLocationRelativeTo(null);
+            login.setVisible(true);
+            new LoginViewController(login);
+        });
+
+        /*Seller seller1 = new Seller("Nicolás", "Canul Ibarra", "ricardo@gmail.com", "9992343446");
         Seller seller2 = new Seller("Emmanuel", "Chablé Collí", "emma@gmail.com", "9992344323");
         Buyer buyer1 = new Buyer("Axel", "Díaz Santos", "axors@outlook.com", "9992676253");
         SellerService sellerService = SellerService.getInstance();
@@ -31,7 +34,7 @@ public class Main {
                 .expirationYear(21);
 
         Post post = postService.getPostById("9702ef29-bb53-4e2a-9a60-fbc21552c7ff");
-        System.out.println(post);
+        System.out.println(post);*/
         // paymentService.publishPostWithCreditCard(post, card);
     }
 

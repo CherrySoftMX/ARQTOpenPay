@@ -12,7 +12,7 @@ import javax.swing.JTextField;
 
 /**
  *
- * @author HikingCarrot7
+ * @author Sonbear
  */
 public class CardInfoForm extends JPanel {
 

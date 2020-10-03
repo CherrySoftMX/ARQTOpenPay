@@ -13,6 +13,10 @@ public abstract class User extends Entity {
     private String email;
     private String phoneNumber;
 
+    public User() {
+        super(UUID.randomUUID().toString());
+    }
+
     public User(String id, String firstName, String lastName, String email, String phoneNumber) {
         super(id);
         this.firstName = firstName;
@@ -59,6 +63,10 @@ public abstract class User extends Entity {
 
     public String getPhoneNumber() {
         return phoneNumber;
+    }
+
+    public String getFullName() {
+        return firstName + " " + lastName;
     }
 
 }
