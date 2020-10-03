@@ -12,8 +12,7 @@ public class DialogUtils {
 
     public static void showDialogAndWait(Window relativeTo, JDialog dialog) {
         dialog.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-        dialog.setLocationRelativeTo(relativeTo);
-        dialog.setVisible(true);
+        showDialog(relativeTo, dialog);
     }
 
     public static void showDialog(Window relativeTo, JDialog dialog) {

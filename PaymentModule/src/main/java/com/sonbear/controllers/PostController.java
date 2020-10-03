@@ -32,8 +32,16 @@ public class PostController {
         return postService.updatePost(id, post);
     }
 
-    public List<Post> getAllPaidPost() {
-        return postService.getAllPaidPost();
+    public List<Post> getAllPublishedPosts(String sellerId) {
+        return postService.getAllPublishedPosts(sellerId);
+    }
+
+    public List<Post> getAllUnpublishedPosts(String sellerId) {
+        return postService.getAllUnpublishedPosts(sellerId);
+    }
+
+    public List<Post> getAllPublishedPost() {
+        return postService.getAllPublishedPost();
     }
 
 }

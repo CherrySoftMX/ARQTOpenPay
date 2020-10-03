@@ -9,11 +9,12 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
+import java.awt.Window;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
@@ -23,9 +24,10 @@ import javax.swing.WindowConstants;
  *
  * @author Sonbear
  */
-public class PaymentProcessView extends JFrame {
+public class PaymentProcessView extends JDialog {
 
-    public PaymentProcessView() {
+    public PaymentProcessView(Window owner) {
+        super(owner);
         initComponents();
     }
 
@@ -43,30 +45,28 @@ public class PaymentProcessView extends JFrame {
         jPanel2 = new JPanel();
         jLabel2 = new JLabel();
         jLabel3 = new JLabel();
-        jLabel4 = new JLabel();
-        jLabel5 = new JLabel();
+        lblConceptoPago = new JLabel();
+        lblFechaAdjudicacion = new JLabel();
         jLabel6 = new JLabel();
-        jLabel7 = new JLabel();
+        lblTipoBien = new JLabel();
         jLabel8 = new JLabel();
-        jLabel9 = new JLabel();
+        lblHoraAdjudicacion = new JLabel();
         jLabel10 = new JLabel();
-        jLabel11 = new JLabel();
+        lblIdEvento = new JLabel();
         jLabel12 = new JLabel();
-        jLabel13 = new JLabel();
+        lblHusoHorario = new JLabel();
         jLabel14 = new JLabel();
-        jLabel15 = new JLabel();
+        lblImporte = new JLabel();
         jPanel3 = new JPanel();
         jLabel16 = new JLabel();
         jPanel6 = new JPanel();
-        jToggleButton1 = new JToggleButton();
-        jToggleButton2 = new JToggleButton();
-        jPanel4 = new JPanel();
+        btnPagoTarjeta = new JToggleButton();
+        btnPagoTienda = new JToggleButton();
+        metodoPagoPanel = new JPanel();
 
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Payment process");
-        setMaximumSize(new Dimension(610, 640));
         setMinimumSize(new Dimension(610, 640));
-        setPreferredSize(new Dimension(610, 640));
 
         jLabel1.setFont(new Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Pagar ahora");
@@ -98,23 +98,21 @@ public class PaymentProcessView extends JFrame {
         gridBagConstraints.weightx = 1.0;
         jPanel2.add(jLabel3, gridBagConstraints);
 
-        jLabel4.setFont(new Font("Tahoma", 0, 14)); // NOI18N
-        jLabel4.setText("REALIZACIÓN DE UN EVENTO DE SUBASTA");
+        lblConceptoPago.setFont(new Font("Tahoma", 0, 14)); // NOI18N
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
-        jPanel2.add(jLabel4, gridBagConstraints);
+        jPanel2.add(lblConceptoPago, gridBagConstraints);
 
-        jLabel5.setFont(new Font("Tahoma", 0, 14)); // NOI18N
-        jLabel5.setText("2020-09-16");
+        lblFechaAdjudicacion.setFont(new Font("Tahoma", 0, 14)); // NOI18N
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
-        jPanel2.add(jLabel5, gridBagConstraints);
+        jPanel2.add(lblFechaAdjudicacion, gridBagConstraints);
 
         jLabel6.setFont(new Font("Tahoma", 1, 16)); // NOI18N
         jLabel6.setForeground(new Color(44, 51, 88));
@@ -127,13 +125,12 @@ public class PaymentProcessView extends JFrame {
         gridBagConstraints.insets = new Insets(10, 0, 0, 0);
         jPanel2.add(jLabel6, gridBagConstraints);
 
-        jLabel7.setFont(new Font("Tahoma", 0, 14)); // NOI18N
-        jLabel7.setText("Correo");
+        lblTipoBien.setFont(new Font("Tahoma", 0, 14)); // NOI18N
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-        jPanel2.add(jLabel7, gridBagConstraints);
+        jPanel2.add(lblTipoBien, gridBagConstraints);
 
         jLabel8.setFont(new Font("Tahoma", 1, 16)); // NOI18N
         jLabel8.setForeground(new Color(44, 51, 88));
@@ -146,13 +143,12 @@ public class PaymentProcessView extends JFrame {
         gridBagConstraints.insets = new Insets(10, 0, 0, 0);
         jPanel2.add(jLabel8, gridBagConstraints);
 
-        jLabel9.setFont(new Font("Tahoma", 0, 14)); // NOI18N
-        jLabel9.setText("12:00 AM");
+        lblHoraAdjudicacion.setFont(new Font("Tahoma", 0, 14)); // NOI18N
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-        jPanel2.add(jLabel9, gridBagConstraints);
+        jPanel2.add(lblHoraAdjudicacion, gridBagConstraints);
 
         jLabel10.setFont(new Font("Tahoma", 1, 16)); // NOI18N
         jLabel10.setForeground(new Color(44, 51, 88));
@@ -165,13 +161,12 @@ public class PaymentProcessView extends JFrame {
         gridBagConstraints.insets = new Insets(10, 0, 0, 0);
         jPanel2.add(jLabel10, gridBagConstraints);
 
-        jLabel11.setFont(new Font("Tahoma", 0, 14)); // NOI18N
-        jLabel11.setText("MXN236478236487236");
+        lblIdEvento.setFont(new Font("Tahoma", 0, 14)); // NOI18N
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-        jPanel2.add(jLabel11, gridBagConstraints);
+        jPanel2.add(lblIdEvento, gridBagConstraints);
 
         jLabel12.setFont(new Font("Tahoma", 1, 16)); // NOI18N
         jLabel12.setForeground(new Color(44, 51, 88));
@@ -184,13 +179,12 @@ public class PaymentProcessView extends JFrame {
         gridBagConstraints.insets = new Insets(10, 0, 0, 0);
         jPanel2.add(jLabel12, gridBagConstraints);
 
-        jLabel13.setFont(new Font("Tahoma", 0, 14)); // NOI18N
-        jLabel13.setText("Africa/Abidjan");
+        lblHusoHorario.setFont(new Font("Tahoma", 0, 14)); // NOI18N
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-        jPanel2.add(jLabel13, gridBagConstraints);
+        jPanel2.add(lblHusoHorario, gridBagConstraints);
 
         jLabel14.setFont(new Font("Tahoma", 1, 16)); // NOI18N
         jLabel14.setForeground(new Color(44, 51, 88));
@@ -203,14 +197,13 @@ public class PaymentProcessView extends JFrame {
         gridBagConstraints.insets = new Insets(10, 0, 0, 0);
         jPanel2.add(jLabel14, gridBagConstraints);
 
-        jLabel15.setFont(new Font("Tahoma", 0, 14)); // NOI18N
-        jLabel15.setText("$15");
+        lblImporte.setFont(new Font("Tahoma", 0, 14)); // NOI18N
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 7;
         gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new Insets(0, 0, 10, 0);
-        jPanel2.add(jLabel15, gridBagConstraints);
+        jPanel2.add(lblImporte, gridBagConstraints);
 
         jPanel1.add(jPanel2);
 
@@ -222,61 +215,101 @@ public class PaymentProcessView extends JFrame {
 
         jPanel6.setLayout(new GridBagLayout());
 
-        buttonGroup1.add(jToggleButton1);
-        jToggleButton1.setIcon(new ImageIcon(getClass().getResource("/card.png"))); // NOI18N
-        jToggleButton1.setContentAreaFilled(false);
-        jToggleButton1.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        buttonGroup1.add(btnPagoTarjeta);
+        btnPagoTarjeta.setIcon(new ImageIcon(getClass().getResource("/card.png"))); // NOI18N
+        btnPagoTarjeta.setContentAreaFilled(false);
+        btnPagoTarjeta.setCursor(new Cursor(Cursor.HAND_CURSOR));
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.insets = new Insets(0, 5, 0, 5);
-        jPanel6.add(jToggleButton1, gridBagConstraints);
+        jPanel6.add(btnPagoTarjeta, gridBagConstraints);
 
-        buttonGroup1.add(jToggleButton2);
-        jToggleButton2.setIcon(new ImageIcon(getClass().getResource("/oxxo.png"))); // NOI18N
-        jToggleButton2.setContentAreaFilled(false);
-        jToggleButton2.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        buttonGroup1.add(btnPagoTienda);
+        btnPagoTienda.setIcon(new ImageIcon(getClass().getResource("/oxxo.png"))); // NOI18N
+        btnPagoTienda.setContentAreaFilled(false);
+        btnPagoTienda.setCursor(new Cursor(Cursor.HAND_CURSOR));
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.insets = new Insets(0, 5, 0, 5);
-        jPanel6.add(jToggleButton2, gridBagConstraints);
+        jPanel6.add(btnPagoTienda, gridBagConstraints);
 
         jPanel3.add(jPanel6, BorderLayout.CENTER);
 
         jPanel1.add(jPanel3);
 
-        jPanel4.setLayout(new BorderLayout());
-        jPanel1.add(jPanel4);
+        metodoPagoPanel.setLayout(new BorderLayout());
+        jPanel1.add(metodoPagoPanel);
 
         getContentPane().add(jPanel1, BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public JToggleButton getBtnPagoTarjeta() {
+        return btnPagoTarjeta;
+    }
+
+    public JToggleButton getBtnPagoTienda() {
+        return btnPagoTienda;
+    }
+
+    public JPanel getMetodoPagoPanel() {
+        return metodoPagoPanel;
+    }
+
+    public JLabel getLblConceptoPago() {
+        return lblConceptoPago;
+    }
+
+    public JLabel getLblFechaAdjudicacion() {
+        return lblFechaAdjudicacion;
+    }
+
+    public JLabel getLblHoraAdjudicacion() {
+        return lblHoraAdjudicacion;
+    }
+
+    public JLabel getLblHusoHorario() {
+        return lblHusoHorario;
+    }
+
+    public JLabel getLblIdEvento() {
+        return lblIdEvento;
+    }
+
+    public JLabel getLblImporte() {
+        return lblImporte;
+    }
+
+    public JLabel getLblTipoBien() {
+        return lblTipoBien;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private JToggleButton btnPagoTarjeta;
+    private JToggleButton btnPagoTienda;
     private ButtonGroup buttonGroup1;
     private Box.Filler filler1;
     private Box.Filler filler2;
     private Box.Filler filler3;
     private JLabel jLabel1;
     private JLabel jLabel10;
-    private JLabel jLabel11;
     private JLabel jLabel12;
-    private JLabel jLabel13;
     private JLabel jLabel14;
-    private JLabel jLabel15;
     private JLabel jLabel16;
     private JLabel jLabel2;
     private JLabel jLabel3;
-    private JLabel jLabel4;
-    private JLabel jLabel5;
     private JLabel jLabel6;
-    private JLabel jLabel7;
     private JLabel jLabel8;
-    private JLabel jLabel9;
     private JPanel jPanel1;
     private JPanel jPanel2;
     private JPanel jPanel3;
-    private JPanel jPanel4;
     private JPanel jPanel6;
-    private JToggleButton jToggleButton1;
-    private JToggleButton jToggleButton2;
+    private JLabel lblConceptoPago;
+    private JLabel lblFechaAdjudicacion;
+    private JLabel lblHoraAdjudicacion;
+    private JLabel lblHusoHorario;
+    private JLabel lblIdEvento;
+    private JLabel lblImporte;
+    private JLabel lblTipoBien;
+    private JPanel metodoPagoPanel;
     // End of variables declaration//GEN-END:variables
 }

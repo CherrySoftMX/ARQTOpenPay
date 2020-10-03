@@ -1,6 +1,7 @@
 package com.sonbear.model.entities;
 
 import java.util.Objects;
+import java.util.UUID;
 
 /**
  *
@@ -16,6 +17,10 @@ public abstract class Entity {
 
     public String getId() {
         return id;
+    }
+
+    public void setId() {
+        setId(UUID.randomUUID().toString());
     }
 
     public void setId(String id) {

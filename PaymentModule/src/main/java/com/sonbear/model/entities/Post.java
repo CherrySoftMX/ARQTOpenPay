@@ -8,6 +8,8 @@ import java.util.UUID;
  */
 public class Post extends Entity {
 
+    public static final String COSTO = "20";
+
     private final String sellerId;
     private String concepto;
     private String tipoBien;
@@ -16,10 +18,10 @@ public class Post extends Entity {
     private String horaAdjudicacion;
     private String husoHorario;
     private double importe;
-    private boolean paidOut;
+    private boolean published;
 
     public Post(String id, String sellerId, String concepto, String tipoBien, String idEvento,
-            String fechaAdjudicacion, String horaAdjudicacion, String husoHorario, double importe, boolean paidOut) {
+            String fechaAdjudicacion, String horaAdjudicacion, String husoHorario, double importe, boolean published) {
 
         super(id);
         this.sellerId = sellerId;
@@ -30,13 +32,13 @@ public class Post extends Entity {
         this.horaAdjudicacion = horaAdjudicacion;
         this.husoHorario = husoHorario;
         this.importe = importe;
-        this.paidOut = paidOut;
+        this.published = published;
     }
 
     public Post(String sellerId) {
         super(UUID.randomUUID().toString());
         this.sellerId = sellerId;
-        this.paidOut = false;
+        this.published = false;
     }
 
     public Post setConcepto(String concepto) {
@@ -47,6 +49,10 @@ public class Post extends Entity {
     public Post setTipoBien(String tipoBien) {
         this.tipoBien = tipoBien;
         return this;
+    }
+
+    public Post setIdEvento() {
+        return setIdEvento(UUID.randomUUID().toString());
     }
 
     public Post setIdEvento(String idEvento) {
@@ -78,7 +84,7 @@ public class Post extends Entity {
         return sellerId;
     }
 
-    public String getConcepto() {
+    public String getConceptoPago() {
         return concepto;
     }
 
@@ -106,12 +112,12 @@ public class Post extends Entity {
         return importe;
     }
 
-    public boolean isPaidOut() {
-        return paidOut;
+    public boolean isPublished() {
+        return published;
     }
 
-    public void setPaidOut(boolean paidOut) {
-        this.paidOut = paidOut;
+    public void setPublished(boolean published) {
+        this.published = published;
     }
 
     @Override public String toString() {

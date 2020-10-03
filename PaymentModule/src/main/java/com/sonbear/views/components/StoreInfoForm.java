@@ -27,10 +27,10 @@ public class StoreInfoForm extends JPanel {
 
         jPanel4 = new JPanel();
         jPanel5 = new JPanel();
-        jButton1 = new JButton();
+        btnGenerarComproabante = new JButton();
         jPanel7 = new JPanel();
         jLabel21 = new JLabel();
-        jTextField5 = new JTextField();
+        txtPhoneNumber = new JTextField();
         jPanel1 = new JPanel();
 
         setLayout(new BorderLayout());
@@ -39,8 +39,8 @@ public class StoreInfoForm extends JPanel {
 
         jPanel5.setLayout(new FlowLayout(FlowLayout.RIGHT, 0, 0));
 
-        jButton1.setText("Generar comprabante");
-        jPanel5.add(jButton1);
+        btnGenerarComproabante.setText("Generar comprabante");
+        jPanel5.add(btnGenerarComproabante);
 
         jPanel4.add(jPanel5, BorderLayout.PAGE_END);
 
@@ -54,12 +54,14 @@ public class StoreInfoForm extends JPanel {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new Insets(7, 0, 0, 0);
         jPanel7.add(jLabel21, gridBagConstraints);
+
+        txtPhoneNumber.setText("9992676253");
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
-        jPanel7.add(jTextField5, gridBagConstraints);
+        jPanel7.add(txtPhoneNumber, gridBagConstraints);
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
@@ -73,13 +75,21 @@ public class StoreInfoForm extends JPanel {
         add(jPanel4, BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
+    public JButton getBtnGenerarComproabante() {
+        return btnGenerarComproabante;
+    }
+
+    public JTextField getTxtPhoneNumber() {
+        return txtPhoneNumber;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private JButton jButton1;
+    private JButton btnGenerarComproabante;
     private JLabel jLabel21;
     private JPanel jPanel1;
     private JPanel jPanel4;
     private JPanel jPanel5;
     private JPanel jPanel7;
-    private JTextField jTextField5;
+    private JTextField txtPhoneNumber;
     // End of variables declaration//GEN-END:variables
 }

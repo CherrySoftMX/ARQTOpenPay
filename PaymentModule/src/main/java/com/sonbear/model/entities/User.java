@@ -29,22 +29,22 @@ public abstract class User extends Entity {
         this(UUID.randomUUID().toString(), firstName, lastName, email, phoneNumber);
     }
 
-    public Entity setFirstName(String firstName) {
+    public User setFirstName(String firstName) {
         this.firstName = firstName;
         return this;
     }
 
-    public Entity setLastName(String lastName) {
+    public User setLastName(String lastName) {
         this.lastName = lastName;
         return this;
     }
 
-    public Entity setEmail(String email) {
+    public User setEmail(String email) {
         this.email = email;
         return this;
     }
 
-    public Entity setPhoneNumber(String phoneNumber) {
+    public User setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
         return this;
     }

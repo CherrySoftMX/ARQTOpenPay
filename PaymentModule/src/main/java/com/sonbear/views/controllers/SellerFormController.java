@@ -1,7 +1,7 @@
 package com.sonbear.views.controllers;
 
 import com.sonbear.model.entities.Seller;
-import com.sonbear.views.AddSellerForm;
+import com.sonbear.views.SellerForm;
 import com.sonbear.views.controllers.utils.AlertUtils;
 import com.sonbear.views.controllers.utils.DialogUtils;
 import java.awt.event.ActionEvent;
@@ -10,13 +10,13 @@ import java.awt.event.ActionEvent;
  *
  * @author HikingCarrot7
  */
-public class AddSellerController {
+public class SellerFormController {
 
-    private final AddSellerForm addSellerForm;
+    private final SellerForm addSellerForm;
     private final Seller newSeller;
     private boolean accepted;
 
-    public AddSellerController(AddSellerForm addSellerForm, Seller newSeller) {
+    public SellerFormController(SellerForm addSellerForm, Seller newSeller) {
         this.addSellerForm = addSellerForm;
         this.newSeller = newSeller;
         this.accepted = false;
@@ -31,10 +31,7 @@ public class AddSellerController {
     private void actionBtnAceptar(ActionEvent e) {
         if (AllFieldsValid()) {
             accepted = true;
-            newSeller.setFirstName(getFirstName());
-            newSeller.setLastName(getLastName());
-            newSeller.setEmail(getEmail());
-            newSeller.setPhoneNumber(getPhoneNumber());
+            fillNewSellerData();
             DialogUtils.quitarDialog(addSellerForm);
         } else
             AlertUtils.mostrarError(addSellerForm, "Algún campo es incorrecto");
@@ -42,6 +39,13 @@ public class AddSellerController {
 
     private void actionBtnCancelar(ActionEvent e) {
         DialogUtils.quitarDialog(addSellerForm);
+    }
+
+    private void fillNewSellerData() {
+        newSeller.setFirstName(getFirstName())
+                .setLastName(getLastName())
+                .setEmail(getEmail())
+                .setPhoneNumber(getPhoneNumber());
     }
 
     private boolean AllFieldsValid() {

@@ -47,11 +47,9 @@ public class BuyersView extends JDialog {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Posts disponibles");
-        setMaximumSize(new Dimension(425, 300));
         setMinimumSize(new Dimension(425, 300));
-        setPreferredSize(new Dimension(425, 300));
         getContentPane().add(filler1, BorderLayout.SOUTH);
         getContentPane().add(filler2, BorderLayout.LINE_START);
         getContentPane().add(filler3, BorderLayout.LINE_END);

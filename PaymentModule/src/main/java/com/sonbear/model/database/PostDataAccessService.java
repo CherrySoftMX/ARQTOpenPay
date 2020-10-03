@@ -53,14 +53,14 @@ public class PostDataAccessService extends DataAccessService<Post> {
         Stream<String[]> content = posts.stream().map(post -> new String[]{
             post.getId(),
             post.getSellerId(),
-            post.getConcepto(),
+            post.getConceptoPago(),
             post.getTipoBien(),
             post.getIdEvento(),
             post.getFechaAdjudicacion(),
             post.getHoraAdjudicacion(),
             post.getHusoHorario(),
             String.valueOf(post.getImporte()),
-            String.valueOf(post.isPaidOut())
+            String.valueOf(post.isPublished())
         });
 
         fileContentManager.saveContent(content);

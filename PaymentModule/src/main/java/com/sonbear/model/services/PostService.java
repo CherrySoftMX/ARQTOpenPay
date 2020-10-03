@@ -47,23 +47,44 @@ public class PostService {
         return dao.updateEntityById(id, post);
     }
 
-    public List<Post> getAllPostsFromSeller(String sellerId) {
-        List<Post> allPosts = getAllPosts();
+    public List<Post> getAllPosts(String sellerId) {
+        List<Post> allPosts = PostService.this.getAllPosts();
         return allPosts.stream()
                 .filter(post -> post.getSellerId().equals(sellerId))
                 .collect(Collectors.toList());
     }
 
-    public boolean isPostPaid(String postId) {
+    public List<Post> getAllPublishedPosts(String sellerId) {
+        List<Post> postFromSeller = getAllPosts(sellerId);
+        return postFromSeller.stream()
+                .filter(Post::isPublished)
+                .collect(Collectors.toList());
+    }
+
+    public List<Post> getAllUnpublishedPosts(String sellerId) {
+        List<Post> postFromSeller = getAllPosts(sellerId);
+        return postFromSeller.stream()
+                .filter(posts -> !posts.isPublished())
+                .collect(Collectors.toList());
+    }
+
+    public boolean isPublishedPost(String postId) {
         return dao.selectEntityById(postId)
-                .map(Post::isPaidOut)
+                .map(Post::isPublished)
                 .orElse(false);
     }
 
-    public List<Post> getAllPaidPost() {
+    public List<Post> getAllPublishedPost() {
         return dao.getAllEntities()
                 .stream()
-                .filter(Post::isPaidOut)
+                .filter(Post::isPublished)
+                .collect(Collectors.toList());
+    }
+
+    public List<Post> getAllUnpublishedPosts() {
+        return dao.getAllEntities()
+                .stream()
+                .filter(post -> !post.isPublished())
                 .collect(Collectors.toList());
     }
 

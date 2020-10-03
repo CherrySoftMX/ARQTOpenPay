@@ -17,8 +17,6 @@ import com.sonbear.model.services.transactions.TransactionService;
  */
 public class PaymentService {
 
-    public static final String COST_PER_POST = "20.00";
-
     private static PaymentService instance;
 
     public synchronized static PaymentService getInstance() {
@@ -37,14 +35,14 @@ public class PaymentService {
     public void publishPostWithCreditCard(Post post, CreditCard creditCard) throws ServiceException {
         creditCard = apiService.registerCreditCard(creditCard);
         Seller seller = getPostAuthor(SellerService.getInstance(), post);
-        TransactionService transactionService = new CreditCardTransaction(seller, creditCard, COST_PER_POST);
+        TransactionService transactionService = new CreditCardTransaction(seller, creditCard, Post.COSTO);
         transactionService.processPayment();
         updatePostStatus(PostService.getInstance(), post);
     }
 
     public void publishPostWithStoreDeposit(Post post) throws ServiceException {
         Seller seller = getPostAuthor(SellerService.getInstance(), post);
-        TransactionService transactionService = new StoreTransaction(seller, COST_PER_POST);
+        TransactionService transactionService = new StoreTransaction(seller, Post.COSTO);
         transactionService.processPayment();
         updatePostStatus(PostService.getInstance(), post);
     }
@@ -65,7 +63,7 @@ public class PaymentService {
     }
 
     private void updatePostStatus(PostService postService, Post post) {
-        post.setPaidOut(true);
+        post.setPublished(true);
         postService.updatePost(post.getId(), post);
     }
 

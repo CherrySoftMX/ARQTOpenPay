@@ -1,10 +1,11 @@
 package com.sonbear.views.controllers;
 
+import com.sonbear.controllers.PostController;
 import com.sonbear.controllers.SellerController;
 import com.sonbear.model.entities.Seller;
 import com.sonbear.model.services.exceptions.ServiceException;
-import com.sonbear.views.AddSellerForm;
-import com.sonbear.views.PostView;
+import com.sonbear.views.PostsView;
+import com.sonbear.views.SellerForm;
 import com.sonbear.views.SellersView;
 import com.sonbear.views.UIConstants;
 import com.sonbear.views.controllers.utils.AlertUtils;
@@ -39,11 +40,11 @@ public class SellersViewController implements UIConstants {
     }
 
     private void initSellersTable() {
-        JTable tabla = sellersView.getTableSellers();
-        TableUtils.initTable(tabla);
-        TableUtils.initTableSelectionBehavior(tabla);
-        TableUtils.quitarCabeceraTabla(tabla);
-        tabla.getModel().addTableModelListener(this::clicEnTablaVendedores);
+        JTable sellersTable = sellersView.getTableSellers();
+        TableUtils.initTable(sellersTable);
+        TableUtils.initTableSelectionBehavior(sellersTable);
+        TableUtils.quitarCabeceraTabla(sellersTable);
+        sellersTable.getModel().addTableModelListener(this::clicEnTablaVendedores);
         loadRegisteredSellers();
     }
 
@@ -54,17 +55,14 @@ public class SellersViewController implements UIConstants {
 
     private void loadRegisteredSellers(JTable table, List<Seller> sellers) {
         TableUtils.vaciarTabla(table);
-        TableUtils.setTableItems(
-                table,
-                sellers,
-                seller -> new Object[]{seller.getFullName()});
+        TableUtils.setTableItems(table, sellers, seller -> new Object[]{seller.getFullName()});
     }
 
     private void actionBtnAddSeller(ActionEvent e) {
-        AddSellerForm addSellerForm = new AddSellerForm(sellersView);
+        SellerForm sellerForm = new SellerForm(sellersView);
         Seller newSeller = new Seller();
-        AddSellerController controller = new AddSellerController(addSellerForm, newSeller);
-        DialogUtils.showDialogAndWait(sellersView, addSellerForm);
+        SellerFormController controller = new SellerFormController(sellerForm, newSeller);
+        DialogUtils.showDialogAndWait(sellersView, sellerForm);
 
         if (controller.isNewSellerAccepted()) {
             insertNewSeller(newSeller);
@@ -78,8 +76,9 @@ public class SellersViewController implements UIConstants {
     }
 
     private void signInSeller(Seller seller) {
-        PostView postView = new PostView(sellersView);
-
+        PostsView postView = new PostsView(sellersView);
+        new PostsViewController(postView, new PostController(), seller);
+        DialogUtils.showDialogAndWait(sellersView, postView);
     }
 
     private void clicEnTablaVendedores(TableModelEvent e) {

@@ -2,6 +2,7 @@ package com.sonbear.model.services;
 
 import com.sonbear.model.database.DataAccessService;
 import com.sonbear.model.database.SellerDataAccessService;
+import com.sonbear.model.entities.Post;
 import com.sonbear.model.entities.Seller;
 import com.sonbear.model.services.exceptions.ServiceException;
 import com.sonbear.model.services.openpay.APIService;
@@ -39,8 +40,14 @@ public class SellerService {
     }
 
     public void removeSeller(Seller seller) throws ServiceException {
+        removeSeller(PostService.getInstance(), seller);
+    }
+
+    private void removeSeller(PostService postService, Seller seller) throws ServiceException {
         if (existSeller(seller.getId())) {
             apiService.deleteUser(seller);
+            List<Post> posts = postService.getAllPosts(seller.getId());
+            posts.forEach(postService::removePost);
             dao.removeEntity(seller);
         }
     }

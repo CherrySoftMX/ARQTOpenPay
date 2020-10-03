@@ -7,21 +7,21 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.Window;
-import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 
 /**
  *
  * @author HikingCarrot7
  */
-public class AddSellerForm extends JDialog {
+public class PostForm extends JDialog {
 
-    public AddSellerForm(Window owner) {
+    public PostForm(Window owner) {
         super(owner);
         initComponents();
     }
@@ -31,28 +31,22 @@ public class AddSellerForm extends JDialog {
     private void initComponents() {
         GridBagConstraints gridBagConstraints;
 
-        filler2 = new Box.Filler(new Dimension(5, 0), new Dimension(5, 0), new Dimension(5, 32767));
-        filler1 = new Box.Filler(new Dimension(5, 0), new Dimension(5, 0), new Dimension(5, 32767));
         jPanel1 = new JPanel();
         btnAceptar = new JButton();
         btnCancelar = new JButton();
         jPanel2 = new JPanel();
         jLabel1 = new JLabel();
-        txtFirstName = new JTextField();
+        txtConceptoPago = new JTextField();
         jLabel2 = new JLabel();
-        txtLastName = new JTextField();
+        txtTipoBien = new JTextField();
         jLabel3 = new JLabel();
-        txtEmail = new JTextField();
+        txtImporte = new JTextField();
         jLabel4 = new JLabel();
-        txtPhone = new JTextField();
+        txtHusoHorario = new JTextField();
 
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        setFocusTraversalPolicyProvider(true);
-        setMaximumSize(new Dimension(420, 170));
-        setMinimumSize(new Dimension(420, 170));
-        setPreferredSize(new Dimension(420, 170));
-        getContentPane().add(filler2, BorderLayout.WEST);
-        getContentPane().add(filler1, BorderLayout.EAST);
+        setTitle("Nuevo post");
+        setMinimumSize(new Dimension(425, 190));
 
         jPanel1.setLayout(new FlowLayout(FlowLayout.RIGHT));
 
@@ -66,65 +60,79 @@ public class AddSellerForm extends JDialog {
 
         jPanel2.setLayout(new GridBagLayout());
 
-        jLabel1.setText("Nombres:");
+        jLabel1.setHorizontalAlignment(SwingConstants.RIGHT);
+        jLabel1.setText("Concepto de pago:");
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new Insets(2, 7, 2, 7);
+        gridBagConstraints.weightx = 0.001;
+        gridBagConstraints.insets = new Insets(4, 15, 4, 15);
         jPanel2.add(jLabel1, gridBagConstraints);
+
+        txtConceptoPago.setText("REALIZACIÓN DE UN EVENTO DE SUBASTA");
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new Insets(4, 15, 4, 15);
+        jPanel2.add(txtConceptoPago, gridBagConstraints);
+
+        jLabel2.setHorizontalAlignment(SwingConstants.RIGHT);
+        jLabel2.setText("Tipo de bien:");
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new Insets(2, 7, 2, 7);
-        jPanel2.add(txtFirstName, gridBagConstraints);
-
-        jLabel2.setText("Apellidos:");
-        gridBagConstraints = new GridBagConstraints();
-        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new Insets(2, 7, 2, 7);
+        gridBagConstraints.weightx = 0.001;
+        gridBagConstraints.insets = new Insets(4, 15, 4, 15);
         jPanel2.add(jLabel2, gridBagConstraints);
+
+        txtTipoBien.setText("Correo");
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new Insets(2, 7, 2, 7);
-        jPanel2.add(txtLastName, gridBagConstraints);
+        gridBagConstraints.insets = new Insets(4, 15, 4, 15);
+        jPanel2.add(txtTipoBien, gridBagConstraints);
 
-        jLabel3.setText("Email:");
+        jLabel3.setHorizontalAlignment(SwingConstants.RIGHT);
+        jLabel3.setText("Huso-horario deseado:");
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new Insets(12, 7, 2, 7);
+        gridBagConstraints.weightx = 0.001;
+        gridBagConstraints.insets = new Insets(4, 15, 4, 15);
         jPanel2.add(jLabel3, gridBagConstraints);
+
+        txtImporte.setText("15.00");
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new Insets(4, 15, 4, 15);
+        jPanel2.add(txtImporte, gridBagConstraints);
+
+        jLabel4.setHorizontalAlignment(SwingConstants.RIGHT);
+        jLabel4.setText("Importe del servicio:");
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new Insets(2, 7, 2, 7);
-        jPanel2.add(txtEmail, gridBagConstraints);
+        gridBagConstraints.weightx = 0.001;
+        gridBagConstraints.insets = new Insets(4, 15, 4, 15);
+        jPanel2.add(jLabel4, gridBagConstraints);
 
-        jLabel4.setText("Teléfono:");
+        txtHusoHorario.setText("Africa/Abidjan");
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new Insets(12, 7, 2, 7);
-        jPanel2.add(jLabel4, gridBagConstraints);
-        gridBagConstraints = new GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new Insets(2, 7, 2, 7);
-        jPanel2.add(txtPhone, gridBagConstraints);
+        gridBagConstraints.insets = new Insets(4, 15, 4, 15);
+        jPanel2.add(txtHusoHorario, gridBagConstraints);
 
         getContentPane().add(jPanel2, BorderLayout.CENTER);
 
@@ -139,36 +147,34 @@ public class AddSellerForm extends JDialog {
         return btnCancelar;
     }
 
-    public JTextField getTxtEmail() {
-        return txtEmail;
+    public JTextField getTxtConceptoPago() {
+        return txtConceptoPago;
     }
 
-    public JTextField getTxtFirstName() {
-        return txtFirstName;
+    public JTextField getTxtHusoHorario() {
+        return txtHusoHorario;
     }
 
-    public JTextField getTxtLastName() {
-        return txtLastName;
+    public JTextField getTxtImporte() {
+        return txtImporte;
     }
 
-    public JTextField getTxtPhone() {
-        return txtPhone;
+    public JTextField getTxtTipoBien() {
+        return txtTipoBien;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private JButton btnAceptar;
     private JButton btnCancelar;
-    private Box.Filler filler1;
-    private Box.Filler filler2;
     private JLabel jLabel1;
     private JLabel jLabel2;
     private JLabel jLabel3;
     private JLabel jLabel4;
     private JPanel jPanel1;
     private JPanel jPanel2;
-    private JTextField txtEmail;
-    private JTextField txtFirstName;
-    private JTextField txtLastName;
-    private JTextField txtPhone;
+    private JTextField txtConceptoPago;
+    private JTextField txtHusoHorario;
+    private JTextField txtImporte;
+    private JTextField txtTipoBien;
     // End of variables declaration//GEN-END:variables
 }
