@@ -16,7 +16,7 @@ public abstract class UserTransactionBehavior {
         this.paymentController = new PaymentController();
     }
 
-    public abstract boolean payPostWithCreditCard(Post post, CreditCard creditCard, String phoneNumber);
+    public abstract boolean payPostWithCreditCard(Post post, CreditCard creditCard);
 
     public abstract boolean payPostWithStoreDeposit(Post post, String phoneNumber);
 

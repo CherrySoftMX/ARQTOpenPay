@@ -11,7 +11,7 @@ import com.sonbear.views.controllers.utils.AlertUtils;
  */
 public class SellerTransactionBehavior extends UserTransactionBehavior {
 
-    @Override public boolean payPostWithCreditCard(Post post, CreditCard creditCard, String phoneNumber) {
+    @Override public boolean payPostWithCreditCard(Post post, CreditCard creditCard) {
         try {
             paymentController.publishPostWithCreditCard(post, creditCard);
             return true;
@@ -23,7 +23,7 @@ public class SellerTransactionBehavior extends UserTransactionBehavior {
 
     @Override public boolean payPostWithStoreDeposit(Post post, String phoneNumber) {
         try {
-            paymentController.publishPostWithStoreDeposit(post);
+            paymentController.publishPostWithStoreDeposit(post, phoneNumber);
             return true;
         } catch (ServiceException ex) {
             AlertUtils.mostrarError(null, ex.getMessage());

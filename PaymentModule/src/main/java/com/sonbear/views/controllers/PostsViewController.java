@@ -21,10 +21,6 @@ import javax.swing.event.TableModelListener;
  */
 public class PostsViewController {
 
-    private static final int BOTON_DELETE_PUBLISHED_POST = 2;
-    private static final int BOTON_DELETE_UNPUBLISHED_POST = 2;
-    private static final int BOTON_PUBLISH_POST = 2;
-
     private final PostsView postsView;
     private final PostController postController;
     private final Seller seller;
@@ -80,17 +76,17 @@ public class PostsViewController {
     }
 
     private void clicEnPublishedPostsTabla(TableModelEvent e) {
-        if (e.getColumn() == BOTON_DELETE_PUBLISHED_POST) {
+        if (e.getColumn() == PostsView.BOTON_DELETE_PUBLISHED_POST) {
             deletePublishedPost(e.getFirstRow());
             loadPublishedPosts();
         }
     }
 
     private void clicEnUnpublishedPostsTabla(TableModelEvent e) {
-        if (e.getColumn() == BOTON_PUBLISH_POST)
+        if (e.getColumn() == PostsView.BOTON_PUBLISH_POST)
             publishPost(e.getFirstRow());
 
-        if (e.getColumn() == BOTON_DELETE_UNPUBLISHED_POST) {
+        if (e.getColumn() == PostsView.BOTON_DELETE_UNPUBLISHED_POST) {
 
         }
     }

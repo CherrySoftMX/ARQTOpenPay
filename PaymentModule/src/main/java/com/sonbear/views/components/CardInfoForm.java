@@ -56,7 +56,7 @@ public class CardInfoForm extends JPanel {
 
         jPanel7.setLayout(new GridBagLayout());
 
-        jLabel17.setText("Nombre de la tarjeta:");
+        jLabel17.setText("Nombre del dueño de la tarjeta:");
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;

@@ -22,6 +22,10 @@ import javax.swing.table.DefaultTableModel;
  */
 public class PostsView extends JDialog implements UIConstants {
 
+    public static final int BOTON_DELETE_PUBLISHED_POST = 2;
+    public static final int BOTON_DELETE_UNPUBLISHED_POST = 2;
+    public static final int BOTON_PUBLISH_POST = 2;
+
     public PostsView(Window owner) {
         super(owner);
         initComponents();
@@ -29,20 +33,20 @@ public class PostsView extends JDialog implements UIConstants {
     }
 
     private void initTables() {
-        publishedPostsTable.getColumnModel().getColumn(2).setCellRenderer((table, value, isSelected, hasFocus, row, column) -> {
+        publishedPostsTable.getColumnModel().getColumn(BOTON_DELETE_PUBLISHED_POST).setCellRenderer((table, value, isSelected, hasFocus, row, column) -> {
             JButton button = new JButton(DEFAULT_DELETE_ICON);
             button.setToolTipText("Eliminar post");
             return button;
         });
 
-        unpublishedPostsTable.getColumnModel().getColumn(2).setCellRenderer((table, value, isSelected, hasFocus, row, column) -> {
+        unpublishedPostsTable.getColumnModel().getColumn(BOTON_PUBLISH_POST).setCellRenderer((table, value, isSelected, hasFocus, row, column) -> {
             JButton button = new JButton(DEFAULT_ROW_ICON);
             button.setToolTipText("Publicar post");
             return button;
         });
 
-        publishedPostsTable.getColumnModel().getColumn(2).setCellEditor(new ButtonCellEditor(DEFAULT_DELETE_ICON));
-        unpublishedPostsTable.getColumnModel().getColumn(2).setCellEditor(new ButtonCellEditor(DEFAULT_ROW_ICON));
+        publishedPostsTable.getColumnModel().getColumn(BOTON_DELETE_PUBLISHED_POST).setCellEditor(new ButtonCellEditor(DEFAULT_DELETE_ICON));
+        unpublishedPostsTable.getColumnModel().getColumn(BOTON_PUBLISH_POST).setCellEditor(new ButtonCellEditor(DEFAULT_ROW_ICON));
     }
 
     @SuppressWarnings("unchecked")

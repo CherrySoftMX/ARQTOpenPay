@@ -2,7 +2,6 @@ package com.sonbear.controllers;
 
 import com.sonbear.model.entities.CreditCard;
 import com.sonbear.model.entities.Post;
-import com.sonbear.model.entities.User;
 import com.sonbear.model.services.PaymentService;
 import com.sonbear.model.services.exceptions.ServiceException;
 
@@ -22,16 +21,16 @@ public class PaymentController {
         paymentService.publishPostWithCreditCard(post, card);
     }
 
-    public void publishPostWithStoreDeposit(Post post) throws ServiceException {
-        paymentService.publishPostWithStoreDeposit(post);
+    public void publishPostWithStoreDeposit(Post post, String phoneNumber) throws ServiceException {
+        paymentService.publishPostWithStoreDeposit(post, phoneNumber);
     }
 
-    public void payPostWithCreditCard(Post post, User buyer, CreditCard creditCard) throws ServiceException {
-        paymentService.payPostWithCreditCard(post, buyer, creditCard);
+    public void payPostWithCreditCard(Post post, CreditCard creditCard) throws ServiceException {
+        paymentService.payPostWithCreditCard(post, creditCard);
     }
 
-    public void payPostWithStoreDeposit(Post post, User buyer) throws ServiceException {
-        paymentService.payPostWithStoreDeposit(post, buyer);
+    public void payPostWithStoreDeposit(Post post, String phoneNumber) throws ServiceException {
+        paymentService.payPostWithStoreDeposit(post, phoneNumber);
     }
 
 }

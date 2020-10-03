@@ -41,9 +41,7 @@ public class TicketView extends JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Ticket");
-        setMaximumSize(new java.awt.Dimension(570, 140));
         setMinimumSize(new java.awt.Dimension(570, 140));
-        setPreferredSize(new java.awt.Dimension(570, 140));
 
         btnTicketPagado.setText("He ido a la tienda y he pagado el importe del servicio!");
         jPanel2.add(btnTicketPagado);
@@ -60,7 +58,7 @@ public class TicketView extends JDialog {
         gridBagConstraints.insets = new java.awt.Insets(6, 53, 6, 53);
         jPanel3.add(jLabel1, gridBagConstraints);
 
-        lblClave.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lblClave.setFont(new java.awt.Font("Tahoma", 0, 23)); // NOI18N
         lblClave.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;

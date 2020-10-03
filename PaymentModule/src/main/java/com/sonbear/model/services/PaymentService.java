@@ -3,7 +3,6 @@ package com.sonbear.model.services;
 import com.sonbear.model.entities.CreditCard;
 import com.sonbear.model.entities.Post;
 import com.sonbear.model.entities.Seller;
-import com.sonbear.model.entities.User;
 import com.sonbear.model.services.exceptions.ServiceException;
 import com.sonbear.model.services.openpay.APIService;
 import com.sonbear.model.services.openpay.OpenpayAPIService;
@@ -40,18 +39,18 @@ public class PaymentService {
         updatePostStatus(PostService.getInstance(), post);
     }
 
-    public void publishPostWithStoreDeposit(Post post) throws ServiceException {
+    public void publishPostWithStoreDeposit(Post post, String phoneNumber) throws ServiceException {
         Seller seller = getPostAuthor(SellerService.getInstance(), post);
         TransactionService transactionService = new StoreTransaction(seller, Post.COSTO);
         transactionService.processPayment();
         updatePostStatus(PostService.getInstance(), post);
     }
 
-    public void payPostWithCreditCard(Post post, User buyer, CreditCard creditCard) throws ServiceException {
+    public void payPostWithCreditCard(Post post, CreditCard creditCard) throws ServiceException {
 
     }
 
-    public void payPostWithStoreDeposit(Post post, User buyer) throws ServiceException {
+    public void payPostWithStoreDeposit(Post post, String phoneNumber) throws ServiceException {
 
     }
 

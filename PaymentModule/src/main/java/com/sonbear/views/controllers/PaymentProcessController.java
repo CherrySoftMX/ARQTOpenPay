@@ -73,7 +73,7 @@ public class PaymentProcessController {
     }
 
     private void payPostWithCreditCard() {
-        boolean completed = transactionBehavior.payPostWithCreditCard(post, createCreditCard(), getPhoneNumber());
+        boolean completed = transactionBehavior.payPostWithCreditCard(post, createCreditCard());
 
         if (completed)
             DialogUtils.quitarDialog(paymentProcessView);

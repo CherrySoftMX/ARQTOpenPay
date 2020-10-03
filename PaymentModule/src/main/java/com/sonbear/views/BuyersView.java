@@ -1,10 +1,12 @@
 package com.sonbear.views;
 
+import com.sonbear.views.controllers.utils.ButtonCellEditor;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Window;
 import javax.swing.Box;
 import javax.swing.GroupLayout;
+import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -17,11 +19,22 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Sonbear
  */
-public class BuyersView extends JDialog {
+public class BuyersView extends JDialog implements UIConstants {
 
     public BuyersView(Window owner) {
         super(owner);
         initComponents();
+        initTables();
+    }
+
+    private void initTables() {
+        tablePosts.getColumnModel().getColumn(2).setCellRenderer((table, value, isSelected, hasFocus, row, column) -> {
+            JButton button = new JButton(DEFAULT_ROW_ICON);
+            button.setToolTipText("¡Me interesa!");
+            return button;
+        });
+
+        tablePosts.getColumnModel().getColumn(2).setCellEditor(new ButtonCellEditor(DEFAULT_ROW_ICON));
     }
 
     @SuppressWarnings("unchecked")
@@ -49,7 +62,9 @@ public class BuyersView extends JDialog {
 
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Posts disponibles");
+        setMaximumSize(new Dimension(425, 300));
         setMinimumSize(new Dimension(425, 300));
+        setPreferredSize(new Dimension(425, 300));
         getContentPane().add(filler1, BorderLayout.SOUTH);
         getContentPane().add(filler2, BorderLayout.LINE_START);
         getContentPane().add(filler3, BorderLayout.LINE_END);
@@ -85,6 +100,10 @@ public class BuyersView extends JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    public JTable getTablePosts() {
+        return tablePosts;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private Box.Filler filler1;
