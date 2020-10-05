@@ -6,7 +6,7 @@ import javax.swing.JDialog;
 
 /**
  *
- * @author HikingCarrot7
+ * @author Sonbear
  */
 public class DialogUtils {
 

@@ -25,9 +25,8 @@ public class OpenpayAPIService extends OpenpayAPI implements APIService {
     private static OpenpayAPIService openpayAPIService;
 
     public synchronized static OpenpayAPIService getOpenpayAPI() {
-        if (openpayAPIService == null) {
+        if (openpayAPIService == null)
             authenticate();
-        }
 
         return openpayAPIService;
     }
@@ -54,23 +53,20 @@ public class OpenpayAPIService extends OpenpayAPI implements APIService {
         super(location, apiKey, merchantId);
     }
 
-    @Override
-    public User registerUser(User user) throws ServiceException {
+    @Override public User registerUser(User user) throws ServiceException {
         Customer customer = createCustomer(user);
         try {
             customer = customers().create(customer);
             user.setId(customer.getId());
             return user;
         } catch (OpenpayServiceException ex) {
-
             throw new ServiceException(ex.getDescription());
         } catch (ServiceUnavailableException ex) {
             throw new ServiceException(ex.getMessage());
         }
     }
 
-    @Override
-    public void deleteUser(User user) throws ServiceException {
+    @Override public void deleteUser(User user) throws ServiceException {
         try {
             customers().delete(user.getId());
         } catch (OpenpayServiceException ex) {
@@ -83,8 +79,7 @@ public class OpenpayAPIService extends OpenpayAPI implements APIService {
     /**
      * {@inheritDoc}
      */
-    @Override
-    public String createChargeWithCreditCard(User user, CreditCard creditCard, String amount) throws ServiceException {
+    @Override public String createChargeWithCreditCard(User user, CreditCard creditCard, String amount) throws ServiceException {
         try {
             Customer customer = createCustomer(user);
 
@@ -107,8 +102,7 @@ public class OpenpayAPIService extends OpenpayAPI implements APIService {
     /**
      * {@inheritDoc}
      */
-    @Override
-    public String createChargeWithStoreDeposit(User user, Date dueDate, String amount) throws ServiceException {
+    @Override public String createChargeWithStoreDeposit(User user, Date dueDate, String amount) throws ServiceException {
         try {
             Customer customer = createCustomer(user);
             CreateStoreChargeParams request = new CreateStoreChargeParams();
@@ -125,8 +119,7 @@ public class OpenpayAPIService extends OpenpayAPI implements APIService {
         }
     }
 
-    @Override
-    public CreditCard registerCreditCard(CreditCard creditCard) throws ServiceException {
+    @Override public CreditCard registerCreditCard(CreditCard creditCard) throws ServiceException {
         try {
             if (!isCardRegistered(creditCard)) {
                 Card card = createCard(creditCard);
@@ -134,7 +127,6 @@ public class OpenpayAPIService extends OpenpayAPI implements APIService {
                 creditCard.setId(card.getId());
                 return creditCard;
             }
-
             return creditCard;
         } catch (OpenpayServiceException ex) {
             throw new ServiceException(ex.getDescription());
@@ -143,8 +135,7 @@ public class OpenpayAPIService extends OpenpayAPI implements APIService {
         }
     }
 
-    @Override
-    public boolean isCardRegistered(CreditCard creditCard) {
+    @Override public boolean isCardRegistered(CreditCard creditCard) {
         try {
             return cards().get(creditCard.getId()) != null;
         } catch (ServiceUnavailableException | OpenpayServiceException ex) {

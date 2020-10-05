@@ -5,7 +5,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author HikingCarrot7
+ * @author Sonbear
  */
 public class AlertUtils {
 

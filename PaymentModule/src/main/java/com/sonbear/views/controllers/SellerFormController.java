@@ -8,37 +8,37 @@ import java.awt.event.ActionEvent;
 
 /**
  *
- * @author HikingCarrot7
+ * @author Sonbear
  */
 public class SellerFormController {
 
-    private final SellerForm addSellerForm;
+    private final SellerForm sellerForm;
     private final Seller newSeller;
     private boolean accepted;
 
-    public SellerFormController(SellerForm addSellerForm, Seller newSeller) {
-        this.addSellerForm = addSellerForm;
+    public SellerFormController(SellerForm sellerForm, Seller newSeller) {
+        this.sellerForm = sellerForm;
         this.newSeller = newSeller;
         this.accepted = false;
         initComponents();
     }
 
     private void initComponents() {
-        addSellerForm.getBtnAceptar().addActionListener(this::actionBtnAceptar);
-        addSellerForm.getBtnCancelar().addActionListener(this::actionBtnCancelar);
+        sellerForm.getBtnAceptar().addActionListener(this::actionBtnAcceptNewSeller);
+        sellerForm.getBtnCancelar().addActionListener(this::actionBtnCancelar);
     }
 
-    private void actionBtnAceptar(ActionEvent e) {
+    private void actionBtnAcceptNewSeller(ActionEvent e) {
         if (AllFieldsValid()) {
             accepted = true;
             fillNewSellerData();
-            DialogUtils.quitarDialog(addSellerForm);
+            DialogUtils.quitarDialog(sellerForm);
         } else
-            AlertUtils.mostrarError(addSellerForm, "Algún campo es incorrecto");
+            AlertUtils.mostrarError(sellerForm, "Algún campo es incorrecto");
     }
 
     private void actionBtnCancelar(ActionEvent e) {
-        DialogUtils.quitarDialog(addSellerForm);
+        DialogUtils.quitarDialog(sellerForm);
     }
 
     private void fillNewSellerData() {
@@ -56,19 +56,19 @@ public class SellerFormController {
     }
 
     private String getFirstName() {
-        return addSellerForm.getTxtFirstName().getText();
+        return sellerForm.getTxtFirstName().getText();
     }
 
     private String getLastName() {
-        return addSellerForm.getTxtLastName().getText();
+        return sellerForm.getTxtLastName().getText();
     }
 
     private String getEmail() {
-        return addSellerForm.getTxtEmail().getText();
+        return sellerForm.getTxtEmail().getText();
     }
 
     private String getPhoneNumber() {
-        return addSellerForm.getTxtPhone().getText();
+        return sellerForm.getTxtPhone().getText();
     }
 
     public boolean isNewSellerAccepted() {

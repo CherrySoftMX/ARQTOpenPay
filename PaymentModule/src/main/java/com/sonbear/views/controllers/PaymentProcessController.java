@@ -13,7 +13,7 @@ import java.awt.event.ActionEvent;
 
 /**
  *
- * @author HikingCarrot7
+ * @author Sonbear
  */
 public class PaymentProcessController {
 
@@ -35,7 +35,7 @@ public class PaymentProcessController {
     private void initComponents() {
         paymentProcessView.getBtnPagoTarjeta().addActionListener(this::actionBtnPagarConTarjeta);
         paymentProcessView.getBtnPagoTienda().addActionListener(this::actionBtnPagarEnTienda);
-        cardInfoForm.getBtnPay().addActionListener(this::actionBtnPagar);
+        cardInfoForm.getBtnPay().addActionListener(this::actionBtnPagarServicio);
         storeInfoForm.getBtnGenerarComproabante().addActionListener(this::actionBtnGenerarComprobante);
         loadCardInfoForm();
         fillPostInfo();
@@ -59,7 +59,7 @@ public class PaymentProcessController {
         loadStoreInforForm();
     }
 
-    private void actionBtnPagar(ActionEvent e) {
+    private void actionBtnPagarServicio(ActionEvent e) {
         payPostWithCreditCard();
     }
 
@@ -68,7 +68,7 @@ public class PaymentProcessController {
         TicketController controller = new TicketController(ticketView);
         DialogUtils.showDialogAndWait(paymentProcessView, ticketView);
 
-        if (controller.isPaid())
+        if (controller.isServicePaid())
             payPostWithStoreDeposit();
     }
 

@@ -13,7 +13,7 @@ import javax.swing.event.TableModelEvent;
 
 /**
  *
- * @author HikingCarrot7
+ * @author Sonbear
  */
 public class BuyersViewController {
 

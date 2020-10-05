@@ -15,7 +15,7 @@ import javax.swing.WindowConstants;
 
 /**
  *
- * @author HikingCarrot7
+ * @author Sonbear
  */
 public class LoadingFrame extends JDialog {
 

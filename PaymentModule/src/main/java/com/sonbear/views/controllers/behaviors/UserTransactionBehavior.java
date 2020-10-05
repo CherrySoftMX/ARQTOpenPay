@@ -6,7 +6,7 @@ import com.sonbear.model.entities.Post;
 
 /**
  *
- * @author HikingCarrot7
+ * @author Sonbear
  */
 public abstract class UserTransactionBehavior {
 

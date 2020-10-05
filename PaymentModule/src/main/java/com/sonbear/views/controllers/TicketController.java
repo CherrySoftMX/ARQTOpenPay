@@ -7,7 +7,7 @@ import java.util.UUID;
 
 /**
  *
- * @author HikingCarrot7
+ * @author Sonbear
  */
 public class TicketController {
 
@@ -29,7 +29,7 @@ public class TicketController {
         DialogUtils.quitarDialog(ticketView);
     }
 
-    public boolean isPaid() {
+    public boolean isServicePaid() {
         return paid;
     }
 

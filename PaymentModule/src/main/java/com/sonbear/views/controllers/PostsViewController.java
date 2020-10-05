@@ -17,7 +17,7 @@ import javax.swing.event.TableModelListener;
 
 /**
  *
- * @author HikingCarrot7
+ * @author Sonbear
  */
 public class PostsViewController {
 
@@ -85,10 +85,6 @@ public class PostsViewController {
     private void clicEnUnpublishedPostsTabla(TableModelEvent e) {
         if (e.getColumn() == PostsView.BOTON_PUBLISH_POST)
             publishPost(e.getFirstRow());
-
-        if (e.getColumn() == PostsView.BOTON_DELETE_UNPUBLISHED_POST) {
-
-        }
     }
 
     private void publishPost(int idxPost) {
@@ -107,14 +103,6 @@ public class PostsViewController {
     private void deletePublishedPost(int idxPost) {
         List<Post> posts = postController.getAllPublishedPosts(seller.getId());
         deletePost(posts.get(idxPost));
-    }
-
-    private void deleteUnpublishedPost(int idxPost) {
-
-    }
-
-    private void deletePost(int idxPost) {
-
     }
 
     private void deletePost(Post post) {

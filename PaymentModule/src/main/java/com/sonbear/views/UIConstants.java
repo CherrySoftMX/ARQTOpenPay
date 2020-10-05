@@ -24,7 +24,7 @@ import javax.swing.table.TableCellRenderer;
 
 /**
  *
- * @author HikingCarrot7
+ * @author Sonbear
  */
 public interface UIConstants {
 

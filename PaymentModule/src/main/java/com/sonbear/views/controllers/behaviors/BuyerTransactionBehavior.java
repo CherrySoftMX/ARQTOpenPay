@@ -7,7 +7,7 @@ import com.sonbear.views.controllers.utils.AlertUtils;
 
 /**
  *
- * @author HikingCarrot7
+ * @author Sonbear
  */
 public class BuyerTransactionBehavior extends UserTransactionBehavior {
 

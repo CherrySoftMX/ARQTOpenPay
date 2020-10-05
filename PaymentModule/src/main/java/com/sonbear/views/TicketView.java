@@ -7,7 +7,7 @@ import javax.swing.JLabel;
 
 /**
  *
- * @author HikingCarrot7
+ * @author Sonbear
  */
 public class TicketView extends JDialog {
 

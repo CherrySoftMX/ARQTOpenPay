@@ -12,7 +12,7 @@ import java.util.Date;
 
 /**
  *
- * @author HikingCarrot7
+ * @author Sonbear
  */
 public class PostFormController {
 
