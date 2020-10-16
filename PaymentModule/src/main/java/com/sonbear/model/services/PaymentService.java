@@ -4,8 +4,6 @@ import com.sonbear.model.entities.CreditCard;
 import com.sonbear.model.entities.Post;
 import com.sonbear.model.entities.Seller;
 import com.sonbear.model.services.exceptions.ServiceException;
-import com.sonbear.model.services.openpay.APIService;
-import com.sonbear.model.services.openpay.OpenpayAPIService;
 import com.sonbear.model.services.transactions.CreditCardTransaction;
 import com.sonbear.model.services.transactions.StoreTransaction;
 import com.sonbear.model.services.transactions.TransactionService;
@@ -25,14 +23,7 @@ public class PaymentService {
         return instance;
     }
 
-    private final APIService apiService;
-
-    private PaymentService() {
-        apiService = OpenpayAPIService.getOpenpayAPI();
-    }
-
     public void publishPostWithCreditCard(Post post, CreditCard creditCard) throws ServiceException {
-        creditCard = apiService.registerCreditCard(creditCard);
         Seller seller = getPostAuthor(SellerService.getInstance(), post);
         TransactionService transactionService = new CreditCardTransaction(seller, creditCard, Post.COSTO);
         transactionService.processPayment();

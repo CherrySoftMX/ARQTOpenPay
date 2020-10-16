@@ -21,6 +21,7 @@ public class CreditCardTransaction extends TransactionService {
     }
 
     @Override public String processPayment() throws ServiceException {
+        card = apiService.registerCreditCard(card);
         return apiService.createChargeWithCreditCard(seller, card, amount);
     }
 
